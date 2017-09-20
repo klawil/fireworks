@@ -32,6 +32,6 @@ class User extends Authenticatable
    * @return ShowRole The shows and roles
    */
   public function shows() {
-    return $this->hasMany('App\ShowRole');
+    return $this->belongsToMany('App\Show', 'show_roles', 'user_id', 'show_id')->withTimestamps();
   }
 }
