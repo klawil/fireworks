@@ -28,6 +28,7 @@ class HomeController extends Controller
       ->shows()
       ->where('planned_date', '>=', \Carbon\Carbon::today())
       ->orderBy('planned_date', 'asc')
+      ->limit(20)
       ->get();
 
     $PastShows = $Request
@@ -35,6 +36,7 @@ class HomeController extends Controller
       ->shows()
       ->where('planned_date', '<', \Carbon\Carbon::today())
       ->orderBy('planned_date', 'desc')
+      ->limit(20)
       ->get();
 
     return view(
