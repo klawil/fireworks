@@ -31,6 +31,7 @@
               @endforeach
             </tbody>
           </table>
+          <a class="btn btn-info btn-block" href="/">See All Future Shows</a>
           @endif
         </div>
       </div>
@@ -64,6 +65,7 @@
               @endforeach
             </tbody>
           </table>
+          <a class="btn btn-info btn-block" href="/">See All Past Shows</a>
           @endif
         </div>
       </div>
