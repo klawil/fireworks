@@ -22,11 +22,11 @@
             <tbody>
               @foreach($upcoming as $show)
               <tr>
-                <th>{{ $show->planned_date }}</th>
-                <th>{{ $show->name }}</th>
-                <th>
+                <td>{{ $show->planned_date }}</td>
+                <td>{{ $show->name }}</td>
+                <td>
                   <a class="btn btn-success" href="/">View Show</a>
-                </th>
+                </td>
               </tr>
               @endforeach
             </tbody>
@@ -55,11 +55,11 @@
             <tbody>
               @foreach($past as $show)
               <tr>
-                <th>{{ $show->planned_date }}</th>
-                <th>{{ $show->name }}</th>
-                <th>
+                <td>{{ $show->planned_date }}</td>
+                <td>{{ $show->name }}</td>
+                <td>
                   <a class="btn btn-success" href="/">View Show</a>
-                </th>
+                </td>
               </tr>
               @endforeach
             </tbody>
