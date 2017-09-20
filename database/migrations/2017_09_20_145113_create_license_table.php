@@ -15,11 +15,9 @@ class CreateLicenseTable extends Migration
     {
         Schema::create('license', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreign('user_id')
-              ->references('id')->on('users');
+            $table->integer('user_id');
             $table->string('type');
-            $table->string('file_id')
-              ->references('id')->on('files');
+            $table->integer('file_id');
             $table->string('state');
             $table->string('license_number');
             $table->date('issue_date');
