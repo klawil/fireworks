@@ -14,7 +14,8 @@ class AddFileName extends Migration
     public function up()
     {
         Schema::table('files', function (Blueprint $table) {
-            $table->string('file_storage_name')->after('file_name');
+            $table->string('storage_name')->after('file_name');
+            $table->dropColumn('file_name');
         });
     }
 
