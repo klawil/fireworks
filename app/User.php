@@ -7,23 +7,31 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+  use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'address', 'city', 'state', 'phone',
-    ];
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+    'first_name', 'last_name', 'email', 'password', 'address', 'city', 'state', 'phone',
+  ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+  /**
+   * The attributes that should be hidden for arrays.
+   *
+   * @var array
+   */
+  protected $hidden = [
+    'password', 'remember_token',
+  ];
+
+  /**
+   * The shows the user has permissions for
+   * @return ShowRole The shows and roles
+   */
+  public function shows() {
+    return $this->hasMany('App\ShowRole');
+  }
 }
