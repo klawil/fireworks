@@ -14,28 +14,10 @@ class Show extends Model
   protected $table = 'shows';
 
   /**
-   * Get the site plan for the show
-   * @return File The file object for the site plan
+   * The date rows on the table
+   * @var Array
    */
-  public function sitePlan() {
-    return $this->hasOne('App\File', 'id', 'site_plan');
-  }
-
-  /**
-   * Get the permit application for the show
-   * @return File The file object for the permit application
-   */
-  public function permitApplication() {
-    return $this->hasOne('App\File', 'id', 'permit_application');
-  }
-
-  /**
-   * Get the permit for the show
-   * @return File The file object for the permit
-   */
-  public function permitFile() {
-    return $this->hasOne('App\File', 'id', 'permit_file');
-  }
+  protected $dates = ['planned_date', 'rain_date'];
 
   /**
    * Get all of the files associated with the show
