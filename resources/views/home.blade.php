@@ -22,10 +22,10 @@
             <tbody>
               @foreach($upcoming as $show)
               <tr>
-                <td>{{ $show->planned_date }}</td>
+                <td>{{ $show->planned_date->format('D, M j, Y') }}</td>
                 <td>{{ $show->name }}</td>
                 <td>
-                  <a class="btn btn-success pull-right" href="/">View Show</a>
+                  <a class="btn btn-success pull-right" href="{{ route('show.show', ['show' => $show]) }}">View Show</a>
                 </td>
               </tr>
               @endforeach
@@ -56,10 +56,10 @@
             <tbody>
               @foreach($past as $show)
               <tr>
-                <td>{{ $show->planned_date }}</td>
+                <td>{{ $show->planned_date->format('D, M j, Y') }}</td>
                 <td>{{ $show->name }}</td>
                 <td>
-                  <a class="btn btn-success pull-right" href="/">View Show</a>
+                  <a class="btn btn-success pull-right" href="{{ route('show.show', ['show' => $show]) }}">View Show</a>
                 </td>
               </tr>
               @endforeach
@@ -70,7 +70,9 @@
         </div>
       </div>
     </div>
+  </div>
 
+  <div class="row">
     @if(count($viewable) > 0)
     <div class="col-md-6">
       <div class="panel panel-default">
