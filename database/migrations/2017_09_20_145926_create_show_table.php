@@ -22,9 +22,6 @@ class CreateShowTable extends Migration
             $table->string('planned_location')->nullable();
             $table->date('rain_date')->nullable();
             $table->string('rain_location')->nullable();
-            $table->integer('site_plan')->nullable();
-            $table->integer('permit_application')->nullable();
-            $table->integer('permit')->nullable();
             $table->timestamps();
         });
     }
