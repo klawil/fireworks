@@ -18,7 +18,7 @@ class ShowRole extends Model
    * @return User The user
    */
   public function user() {
-    return $this->hasOne('App\User', 'id', 'user_id');
+    return $this->belongsTo('App\User');
   }
 
   /**
@@ -26,7 +26,7 @@ class ShowRole extends Model
    * @return Role The role
    */
   public function role() {
-    return $this->hasOne('App\Role', 'id', 'role_id');
+    return $this->belongsTo('App\Role');
   }
 
   /**
@@ -34,6 +34,6 @@ class ShowRole extends Model
    * @return Show The show
    */
   public function show() {
-    return $this->hasOne('App\Show', 'id', 'show_id');
+    return $this->belongsTo('App\Show');
   }
 }
