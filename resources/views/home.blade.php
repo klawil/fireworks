@@ -25,7 +25,7 @@
                 <td>{{ $show->planned_date }}</td>
                 <td>{{ $show->name }}</td>
                 <td>
-                  <a class="btn btn-success" href="/">View Show</a>
+                  <a class="btn btn-success pull-right" href="/">View Show</a>
                 </td>
               </tr>
               @endforeach
@@ -59,7 +59,7 @@
                 <td>{{ $show->planned_date }}</td>
                 <td>{{ $show->name }}</td>
                 <td>
-                  <a class="btn btn-success" href="/">View Show</a>
+                  <a class="btn btn-success pull-right" href="/">View Show</a>
                 </td>
               </tr>
               @endforeach
@@ -70,6 +70,66 @@
         </div>
       </div>
     </div>
+
+    @if(count($viewable) > 0)
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Viewable Users</div>
+
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($viewable as $user)
+              <tr>
+                <td>{{ $user->last_name }}, {{ $user->first_name }}</td>
+                <td>
+                  <a class="btn btn-success pull-right" href="/">View User</a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+          <a class="btn btn-info btn-block" href="/">See All</a>
+        </div>
+      </div>
+    </div>
+    @endif
+
+    @if(count($viewers) > 0)
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Users That Can View You</div>
+
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($viewers as $user)
+              <tr>
+                <td>{{ $user->last_name }}, {{ $user->first_name }}</td>
+                <td>
+                  <a class="btn btn-success pull-right" href="/">View User</a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+          <a class="btn btn-info btn-block" href="/">See All</a>
+        </div>
+      </div>
+    </div>
+    @endif
   </div>
 </div>
 @endsection
