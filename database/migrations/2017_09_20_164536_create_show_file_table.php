@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShowFilesTable extends Migration
+class CreateShowFileTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateShowFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('show_files', function (Blueprint $table) {
+        Schema::create('show_file', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('show_id');
             $table->integer('file_id');
             $table->string('relationship')->nullable();
+            $table->boolean('shooter_viewable')->default(False);
+            $table->boolean('driver_viewable')->default(False);
+            $table->boolean('assistant_viewable')->default(False);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +33,6 @@ class CreateShowFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('show_files');
+        Schema::dropIfExists('show_file');
     }
 }

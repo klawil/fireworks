@@ -10,12 +10,11 @@ class User extends Authenticatable
   use Notifiable;
 
   /**
-   * The attributes that are mass assignable.
-   *
+   * The attributes that are not mass assignable.
    * @var array
    */
-  protected $fillable = [
-    'first_name', 'last_name', 'email', 'password', 'address', 'city', 'state', 'phone',
+  protected $guarded = [
+    'remember_token',
   ];
 
   /**
@@ -28,32 +27,42 @@ class User extends Authenticatable
   ];
 
   /**
-   * The shows the user has permissions for
-   * @return ShowRole The shows and roles
+   * The shows the user belongs to and their permissions
+   * @return App\Show The shows the user has access to
    */
   public function shows() {
-    return $this->belongsToMany('App\Show', 'show_roles', 'user_id', 'show_id')->withTimestamps();
+    return $this
+      ->belongsToMany('App\Show')
+      ->withPivot('payment', 'is_owner', 'is_shooter', 'is_driver', 'is_assistant');
   }
 
   /**
    * The users that this user can see
-   * @return User The users that this user can see
+   * @return App\User The users that this user can see
    */
   public function userCanSee() {
     return $this
       ->belongsToMany('App\User', 'user_user', 'viewer_id', 'user_id')
-      ->withPivot('type')
+      ->withPivot('can_edit')
       ->withTimestamps();
   }
 
   /**
    * The users that can see this user
-   * @return User The users that can see this user
+   * @return App\User The users that can see this user
    */
   public function canSeeUser() {
     return $this
       ->belongsToMany('App\User', 'user_user', 'user_id', 'viewer_id')
-      ->withPivot('type')
+      ->withPivot('can_edit')
       ->withTimestamps();
+  }
+
+  /**
+   * The licenses the user has (shooter, driver, etc)
+   * @return App\License The licenses the user has
+   */
+  public function licenses() {
+    return $this->hasMany('App\License');
   }
 }

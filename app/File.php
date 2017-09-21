@@ -15,9 +15,28 @@ class File extends Model
 
   /**
    * The user that created the file
-   * @return User The user that created the file
+   * @return App\User The user that created the file
    */
   public function user() {
     return $this->belongsTo('App\User');
+  }
+
+  /**
+   * The show(s) that the file belongs to
+   * @return App\Show The show the file belongs to
+   */
+  public function show() {
+    return $this
+      ->belongsToMany('App\Show')
+      ->withPivot('relationship', 'shooter_viewable', 'driver_viewable', 'assistant_viewable');
+  }
+
+  /**
+   * The license the file belongs to
+   * @return App\License The license the file belongs to
+   */
+  public function license() {
+    return $this
+      ->belongsTo('App\License');
   }
 }

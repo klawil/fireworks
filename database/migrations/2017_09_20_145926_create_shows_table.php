@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UserUser extends Migration
+class CreateShowsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class UserUser extends Migration
      */
     public function up()
     {
-        Schema::create('user_user', function (Blueprint $table) {
+        Schema::create('shows', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('viewer_id');
-            $table->string('type');
+            $table->string('name');
+            $table->float('price', 20, 4)->nullable();
+            $table->date('planned_date')->nullable();
+            $table->string('planned_location')->nullable();
+            $table->date('rain_date')->nullable();
+            $table->string('rain_location')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +33,6 @@ class UserUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_user');
+        Schema::dropIfExists('shows');
     }
 }

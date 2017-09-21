@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ShowRoles extends Migration
+class CreateShowUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class ShowRoles extends Migration
      */
     public function up()
     {
-        Schema::create('show_roles', function (Blueprint $table) {
+        Schema::create('show_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('show_id');
-            $table->integer('role_id');
+            $table->float('payment', 10, 2)->nullable();
+            $table->boolean('is_owner')->default(False);
+            $table->boolean('is_shooter')->default(False);
+            $table->boolean('is_driver')->default(False);
+            $table->boolean('is_assistant')->default(False);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +34,6 @@ class ShowRoles extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('show_roles');
+        Schema::dropIfExists('show_user');
     }
 }
