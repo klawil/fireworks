@@ -12,4 +12,12 @@ class File extends Model
    * @var string
    */
   protected $table = 'files';
+
+  /**
+   * The user that created the file
+   * @return User The user that created the file
+   */
+  public function user() {
+    return $this->belongsTo('App\User');
+  }
 }
