@@ -39,11 +39,29 @@ class HomeController extends Controller
       ->limit(20)
       ->get();
 
+    $ViewableUsers = $Request
+      ->user()
+      ->userCanSee()
+      ->orderBy('last_name', 'asc')
+      ->orderBy('first_name', 'asc')
+      ->limit(20)
+      ->get();
+
+    $ViewingUsers = $Request
+      ->user()
+      ->canSeeUser()
+      ->orderBy('last_name', 'asc')
+      ->orderBy('first_name', 'asc')
+      ->limit(20)
+      ->get();
+
     return view(
       'home',
       [
         'upcoming' => $UpcomingShows,
         'past' => $PastShows,
+        'viewable' => $ViewableUsers,
+        'viewers' => $ViewingUsers,
       ]
     );
   }
