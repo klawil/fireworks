@@ -12,9 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('show', 'ShowController');
+Route::post('/show/{show}/upload', 'ShowController@upload')->name('show.upload');
+
+Route::resource('file', 'FileController');
