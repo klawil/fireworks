@@ -18,7 +18,8 @@ class File extends Model
    * @return App\User The user that created the file
    */
   public function user() {
-    return $this->belongsTo('App\User');
+    return $this
+      ->belongsTo('App\User');
   }
 
   /**
@@ -27,7 +28,7 @@ class File extends Model
    */
   public function show() {
     return $this
-      ->belongsToMany('App\Show')
+      ->belongsToMany('App\Show', 'show_file')
       ->withPivot('relationship', 'shooter_viewable', 'driver_viewable', 'assistant_viewable');
   }
 
@@ -37,6 +38,6 @@ class File extends Model
    */
   public function license() {
     return $this
-      ->belongsTo('App\License');
+      ->hasOne('App\License');
   }
 }
