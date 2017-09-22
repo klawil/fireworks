@@ -9,7 +9,7 @@
 
         <div class="panel-body">
           @if(count($upcoming) === 0)
-          <h4>There isn't anything here! Try creating a show</h4>
+          <h4>There isn't anything here! Try <a href="{{ route('show.create') }}">creating a show</a></h4>
           @else
           <table class="table table-striped">
             <thead>
@@ -31,7 +31,7 @@
               @endforeach
             </tbody>
           </table>
-          <a class="btn btn-info btn-block" href="/">See All Future Shows</a>
+          <a class="btn btn-info btn-block" href="{{ route('show.index', ['type' => 'future']) }}">See All Future Shows</a>
           @endif
         </div>
       </div>
@@ -43,7 +43,7 @@
 
         <div class="panel-body">
           @if(count($past) === 0)
-          <h4>There isn't anything here! Try creating a show</h4>
+          <h4>There isn't anything here! Try <a href="{{ route('show.create') }}">creating a show</a></h4>
           @else
           <table class="table table-striped">
             <thead>
@@ -65,7 +65,7 @@
               @endforeach
             </tbody>
           </table>
-          <a class="btn btn-info btn-block" href="/">See All Past Shows</a>
+          <a class="btn btn-info btn-block" href="{{ route('show.index', ['type' => 'past']) }}">See All Past Shows</a>
           @endif
         </div>
       </div>
