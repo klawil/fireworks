@@ -63,6 +63,7 @@ class User extends Authenticatable
    * @return App\License The licenses the user has
    */
   public function licenses() {
-    return $this->hasMany('App\License');
+    return $this
+      ->hasMany('App\License');
   }
 }
