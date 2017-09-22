@@ -18,7 +18,8 @@ class License extends Model
    * @return App\User The user that uploaded the file
    */
   public function user() {
-    return $this->belongsTo('App\User');
+    return $this
+      ->belongsTo('App\User');
   }
 
   /**
@@ -26,6 +27,7 @@ class License extends Model
    * @return App\File The file that has the license
    */
   public function file() {
-    return $this->hasOne('App\File');
+    return $this
+      ->belongsTo('App\File');
   }
 }
