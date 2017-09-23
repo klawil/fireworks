@@ -84,7 +84,7 @@
               <label for="relationship" class="col-md-4 control-label">What is this file?</label>
 
               <div class="col-md-6">
-                <input id="relationship" name="relationship" type="text" class="form-control" value="{{ old('relationship') }}" required autofocus>
+                <input id="relationship" name="relationship" type="text" class="form-control" value="{{ old('relationship') }}" required>
 
                 @if ($errors->has('relationship'))
                 <span class="help-block">
@@ -98,7 +98,7 @@
               <label for="file" class="col-md-4 control-label">Choose a file to upload</label>
 
               <div class="col-md-6">
-                <input id="file" name="file" type="file" class="form-control" value="{{ old('file') }}" required autofocus>
+                <input id="file" name="file" type="file" class="form-control" value="{{ old('file') }}" required>
 
                 @if ($errors->has('file'))
                 <span class="help-block">
@@ -115,7 +115,7 @@
                 <input type="hidden" name="driver_viewable" value="0">
                 <div class="checkbox form-control" style="border:none;box-shadow:none;">
                   <label>
-                    <input id="driver_viewable" name="driver_viewable" type="checkbox"{{ old('driver_viewable') ? ' checked' : '' }} value="1" autofocus>
+                    <input id="driver_viewable" name="driver_viewable" type="checkbox"{{ old('driver_viewable') ? ' checked' : '' }} value="1">
                     Driver(s)
                   </label>
                 </div>
@@ -135,7 +135,7 @@
                 <input type="hidden" name="shooter_viewable" value="0">
                 <div class="checkbox form-control" style="border:none;box-shadow:none;">
                   <label>
-                    <input id="shooter_viewable" name="shooter_viewable" type="checkbox"{{ old('shooter_viewable') ? ' checked' : '' }} value="1" autofocus>
+                    <input id="shooter_viewable" name="shooter_viewable" type="checkbox"{{ old('shooter_viewable') ? ' checked' : '' }} value="1">
                     Shooter(s)
                   </label>
                 </div>
@@ -155,7 +155,7 @@
                 <input type="hidden" name="assistant_viewable" value="0">
                 <div class="checkbox form-control" style="border:none;box-shadow:none;">
                   <label>
-                    <input id="assistant_viewable" name="assistant_viewable" type="checkbox"{{ old('assistant_viewable') ? ' checked' : '' }} value="1" autofocus>
+                    <input id="assistant_viewable" name="assistant_viewable" type="checkbox"{{ old('assistant_viewable') ? ' checked' : '' }} value="1">
                     Assistant(s)
                   </label>
                 </div>
