@@ -156,6 +156,12 @@ class ShowController extends Controller
       ]);
   }
 
+  /**
+   * Upload a file to a show
+   * @param  Show     $show    The show to upload to
+   * @param  Request  $request The request instance
+   * @return Response          A redirect to the show page
+   */
   public function upload(Show $show, Request $request)
   {
     // Authorize the request
