@@ -2,18 +2,25 @@
 
 @section('content')
 <div class="container">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="text-center">{{ $show->name }}</h2>
+      </div>
+    </div>
+  </div>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2>{{ $show->name }}</h2>
+          <h4>Show Information</h4>
         </div>
         <div class="panel-body">
           <table class="table table-striped">
             <tbody>
               <tr>
                 <td>Your Role(s)</td>
-                <td>{{ implode($roles, ', ') }}</td>
+                <td>{{ $relationship->getRoles() }}</td>
               </tr>
               <tr>
                 <td>Planned Date</td>
@@ -43,13 +50,74 @@
                 <td>${{ number_format($relationship->payment, 2) }}</td>
               </tr>
               @endif
+              @if($relationship->is_owner)
+              <tr>
+                <td colspan="2"><a href="" class="btn btn-primary btn-block">Edit Show</a></td>
+              </tr>
+              @endif
             </tbody>
           </table>
         </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Users</h4>
+        </div>
 
         <div class="panel-body">
-          <h4>Files</h4>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role(s)</th>
+                @if($relationship->is_owner)
+                <th>Pay</th>
+                <th></th>
+                @endif
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($show->users as $user)
+              <tr>
+                <td>{{ $user->last_name }}, {{ $user->first_name }}</td>
+                <td>{{ $user->pivot->getRoles() }}</td>
+                @if($relationship->is_owner)
+                <td>{{ $user->pivot->payment ? '$' . number_format($user->pivot->payment, 2) : 'N/A' }}</td>
+                @endif
+                @if($relationship->is_owner)
+                <td>
+                  <a class="btn btn-info btn-block">Edit Roles</a>
+                </td>
+                @endif
+                <td>
+                  @if($relationship->is_owner || $relationship->user_id === $user->id)
+                  <a class="btn btn-danger btn-block">Remove User</a>
+                  @endif
+                </td>
+              </tr>
+              @endforeach
+              @if($relationship->is_owner)
+              <tr>
+                <td colspan="5"><a href="" class="btn btn-primary btn-block">Add a User</a></td>
+              </tr>
+              @endif
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Show Files</h4>
+        </div>
+
+        <div class="panel-body">
           <table class="table table-striped">
             <thead>
               <tr>
@@ -70,112 +138,18 @@
                 </tr>
                 @endcan
               @endforeach
+              <tr>
+                <td colspan="4"><a href="{{ route('show.upload', ['show' => $show]) }}" class="btn btn-primary btn-block">Upload a File</a></td>
+              </tr>
             </tbody>
           </table>
         </div>
+      </div>
+    </div>
 
-        <div class="panel-body">
-          <h4 class="text-center">Upload a File</h4>
-
-          <form action="{{ route('show.upload', ['show' => $show]) }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
-            {{ csrf_field() }}
-
-            <div class="form-group{{ $errors->has('relationship') ? ' has-error' : '' }}">
-              <label for="relationship" class="col-md-4 control-label">What is this file?</label>
-
-              <div class="col-md-6">
-                <input id="relationship" name="relationship" type="text" class="form-control" value="{{ old('relationship') }}" required>
-
-                @if ($errors->has('relationship'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('relationship') }}</strong>
-                </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('file') ? ' has-error' : '' }}">
-              <label for="file" class="col-md-4 control-label">Choose a file to upload</label>
-
-              <div class="col-md-6">
-                <input id="file" name="file" type="file" class="form-control" value="{{ old('file') }}" required>
-
-                @if ($errors->has('file'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('file') }}</strong>
-                </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="driver_viewable" class="col-md-4 control-label">Who can view this file?</label>
-
-              <div class="col-md-6{{ $errors->has('driver_viewable') ? ' has-error' : '' }}">
-                <input type="hidden" name="driver_viewable" value="0">
-                <div class="checkbox form-control" style="border:none;box-shadow:none;">
-                  <label>
-                    <input id="driver_viewable" name="driver_viewable" type="checkbox"{{ old('driver_viewable') ? ' checked' : '' }} value="1">
-                    Driver(s)
-                  </label>
-                </div>
-
-                @if ($errors->has('driver_viewable'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('driver_viewable') }}</strong>
-                </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="shooter_viewable" class="col-md-4 control-label"></label>
-
-              <div class="col-md-6{{ $errors->has('shooter_viewable') ? ' has-error' : '' }}">
-                <input type="hidden" name="shooter_viewable" value="0">
-                <div class="checkbox form-control" style="border:none;box-shadow:none;">
-                  <label>
-                    <input id="shooter_viewable" name="shooter_viewable" type="checkbox"{{ old('shooter_viewable') ? ' checked' : '' }} value="1">
-                    Shooter(s)
-                  </label>
-                </div>
-
-                @if ($errors->has('shooter_viewable'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('shooter_viewable') }}</strong>
-                </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="assistant_viewable" class="col-md-4 control-label"></label>
-
-              <div class="col-md-6{{ $errors->has('assistant_viewable') ? ' has-error' : '' }}">
-                <input type="hidden" name="assistant_viewable" value="0">
-                <div class="checkbox form-control" style="border:none;box-shadow:none;">
-                  <label>
-                    <input id="assistant_viewable" name="assistant_viewable" type="checkbox"{{ old('assistant_viewable') ? ' checked' : '' }} value="1">
-                    Assistant(s)
-                  </label>
-                </div>
-
-                @if ($errors->has('assistant_viewable'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('assistant_viewable') }}</strong>
-                </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-primary btn-block">Upload File</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        @can('delete', $show)
+    @can('delete', $show)
+    <div class="col-xs-12">
+      <div class="panel panel-default">
         <div class="panel-body">
           <form method="POST" action="{{ route('show.destroy', ['show' => $show]) }}">
             {{ csrf_field() }}
@@ -183,9 +157,9 @@
             <input type="submit" class="btn btn-danger btn-block" value="Delete Show">
           </form>
         </div>
-        @endcan
       </div>
     </div>
+    @endcan
   </div>
 </div>
 @endsection
