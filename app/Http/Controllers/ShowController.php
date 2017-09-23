@@ -99,35 +99,14 @@ class ShowController extends Controller
     // Authorize the request
     $this->authorize('view', $show);
 
-    // Get the files
-    $Files = $show
-      ->files()
-      ->get();
-
     // Get the relationship to the show
     $ShowRelationship = $show
       ->users
       ->find($request->user());
 
-    // Get the roles for the show
-    $Roles = [];
-    if ($ShowRelationship->pivot->is_owner) {
-      $Roles[] = 'Owner';
-    }
-    if ($ShowRelationship->pivot->is_driver) {
-      $Roles[] = 'Driver';
-    }
-    if ($ShowRelationship->pivot->is_shooter) {
-      $Roles[] = 'Shooter';
-    }
-    if ($ShowRelationship->pivot->is_assistant) {
-      $Roles[] = 'Assistant';
-    }
-
     return view('show.show', [
       'show' => $show,
       'relationship' => $ShowRelationship->pivot,
-      'roles' => $Roles,
     ]);
   }
 
