@@ -157,6 +157,22 @@ class ShowController extends Controller
   }
 
   /**
+   * Show the form for uploading a file to the show
+   * @param  Show   $show
+   * @return Response
+   */
+  public function uploadForm(Show $show)
+  {
+    // Authorize the request
+    $this->authorize('view', $show);
+
+    // Return the view
+    return view('show.upload', [
+      'show' => $show,
+    ]);
+  }
+
+  /**
    * Upload a file to a show
    * @param  Show     $show    The show to upload to
    * @param  Request  $request The request instance
