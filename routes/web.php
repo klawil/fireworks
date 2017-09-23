@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('show', 'ShowController');
-Route::post('/show/{show}/upload', 'ShowController@upload')->name('show.upload');
+Route::get('/show/{show}/upload', 'ShowController@uploadForm')->name('show.upload');
+Route::post('/show/{show}/upload', 'ShowController@upload');
 
 Route::resource('file', 'FileController');
