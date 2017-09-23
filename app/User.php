@@ -33,6 +33,7 @@ class User extends Authenticatable
   public function shows() {
     return $this
       ->belongsToMany('App\Show')
+      ->using('App\ShowUser')
       ->withPivot('payment', 'is_owner', 'is_shooter', 'is_driver', 'is_assistant');
   }
 
