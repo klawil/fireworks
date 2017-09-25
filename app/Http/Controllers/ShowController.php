@@ -83,9 +83,10 @@ class ShowController extends Controller
       ]);
 
     // Redirect to the new show page
-    return redirect()->route('show.show', [
-      'show' => $Show,
-    ]);
+    return redirect()
+      ->route('show.show', [
+        'show' => $Show,
+      ]);
   }
 
   /**
@@ -120,6 +121,11 @@ class ShowController extends Controller
   {
     // Authorize the request
     $this->authorize('update', $show);
+
+    // Return the view
+    return view('show.update', [
+      'show' => $show,
+    ]);
   }
 
   /**
@@ -133,6 +139,27 @@ class ShowController extends Controller
   {
     // Authorize the request
     $this->authorize('update', $show);
+
+    // Validate the request
+    $request->validate($this->rules);
+
+    // Save the show values
+    $show->name = $request->input('name');
+    $show->price = $request->input('price', null);
+    $show->planned_date = $request->input('planned_date');
+    $show->planned_location = $request->input('planned_location', null);
+    $show->rain_date = $request->input('rain_date', null);
+    $show->rain_location = $request->input('rain_location', null);
+    $show->save();
+
+    // Return the redirect
+    return redirect()
+      ->route('show.show', [
+        'show' => $show,
+      ])
+      ->with([
+        'message' => 'Show Updated',
+      ]);
   }
 
   /**

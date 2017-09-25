@@ -52,7 +52,7 @@
               @endif
               @if($relationship->is_owner)
               <tr>
-                <td colspan="2"><a href="" class="btn btn-primary btn-block">Edit Show</a></td>
+                <td colspan="2"><a href="{{ route('show.edit', ['show' => $show]) }}" class="btn btn-primary btn-block">Edit Show</a></td>
               </tr>
               @endif
             </tbody>
