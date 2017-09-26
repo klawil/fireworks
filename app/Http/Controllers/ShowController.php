@@ -283,7 +283,7 @@ class ShowController extends Controller
 
     // Validate the request
     $request->validate([
-      'user_id' => 'required|exists:users',
+      'user_id' => 'required|exists:users,id',
       'is_owner' => 'required|boolean',
       'is_driver' => 'required|boolean',
       'is_shooter' => 'required|boolean',
@@ -295,7 +295,7 @@ class ShowController extends Controller
     $User = \App\User::find($request->input('user_id'));
 
     // Make the association
-    $Relationship = $show
+    $show
       ->users()
       ->save($User, [
         'is_owner' => $request->input('is_owner'),
@@ -304,6 +304,10 @@ class ShowController extends Controller
         'is_assistant' => $request->input('is_assistant'),
         'payment' => $request->input('payment', null),
       ]);
+    $Relationship = $show
+      ->users
+      ->find($User)
+      ->pivot;
 
     return redirect()
       ->route('show.user.create', [

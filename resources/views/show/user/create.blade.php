@@ -8,25 +8,25 @@
         <div class="panel-heading text-center">Add a User to {{ $show->name }}</div>
 
         <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="{{ route('show.store') }}">
+          <form class="form-horizontal" method="POST" action="{{ route('show.user.store', ['show' => $show]) }}">
             {{ csrf_field() }}
 
-            <div class="form-group{{ $errors->has('user') ? ' has-error' : '' }}">
-              <label for="user" class="col-md-4 control-label">User to Add</label>
+            <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
+              <label for="user_id" class="col-md-4 control-label">User to Add</label>
 
               <div class="col-md-6">
-                <select id="user" name="user" class="form-control" required autofocus>
-                  <option{{ old('user', null) === null ? ' selected' : '' }} disabled>Select a User</option>
+                <select id="user_id" name="user_id" class="form-control" required autofocus>
+                  <option{{ old('user_id', null) === null ? ' selected' : '' }} disabled>Select a User</option>
                   @foreach($users as $user)
                     @if($user->shows_count === 0)
-                      <option{{ old('user', null) === $user->id ? ' selected' : '' }} value="{{ $user->id }}">{{ $user->last_name }}, {{ $user->first_name }}</option>
+                      <option{{ old('user_id', null) === $user->id ? ' selected' : '' }} value="{{ $user->id }}">{{ $user->last_name }}, {{ $user->first_name }}</option>
                     @endif
                   @endforeach
                 </select>
 
-                @if ($errors->has('user'))
+                @if ($errors->has('user_id'))
                   <span class="help-block">
-                    <strong>{{ $errors->first('user') }}</strong>
+                    <strong>{{ $errors->first('user_id') }}</strong>
                   </span>
                 @endif
               </div>
@@ -128,7 +128,7 @@
 
             <div class="form-group">
               <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary btn-block">
                   Add User
                 </button>
               </div>
