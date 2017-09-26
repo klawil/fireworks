@@ -37,14 +37,17 @@ class ShowController extends Controller
       $Shows = $Shows
         ->where('planned_date', '<', \Carbon\Carbon::today())
         ->orderBy('planned_date', 'desc');
+      $Title = 'Past Shows';
     } else {
       $Shows = $Shows
         ->where('planned_date', '>=', \Carbon\Carbon::today())
         ->orderBy('planned_date', 'asc');
+      $Title = 'Future Shows';
     }
 
     return view('show.index', [
       'shows' => $Shows->get(),
+      'title' => $Title,
     ]);
   }
 
