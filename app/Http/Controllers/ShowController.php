@@ -253,6 +253,13 @@ class ShowController extends Controller
       ]);
   }
 
+  /**
+   * Show the form for associating a new user
+   *
+   * @param  Show    $show
+   * @param  Request $request
+   * @return Response
+   */
   public function userCreate(Show $show, Request $request)
   {
     // Authorize the request
@@ -276,6 +283,13 @@ class ShowController extends Controller
     ]);
   }
 
+  /**
+   * Store a newly created association in storage
+   *
+   * @param  Show    $show
+   * @param  Request $request
+   * @return Response
+   */
   public function userStore(Show $show, Request $request)
   {
     // Authorize the request
