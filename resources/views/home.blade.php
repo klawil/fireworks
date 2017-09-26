@@ -91,13 +91,13 @@
               <tr>
                 <td>{{ $user->last_name }}, {{ $user->first_name }}</td>
                 <td>
-                  <a class="btn btn-success pull-right" href="/">View User</a>
+                  <a class="btn btn-success pull-right" href="{{ route('user.show', ['user' => $user]) }}">View User</a>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
-          <a class="btn btn-info btn-block" href="/">See All</a>
+          <a class="btn btn-info btn-block" href="{{ route('user.index') }}">See All</a>
         </div>
       </div>
     </div>
