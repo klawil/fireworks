@@ -109,7 +109,13 @@
               @endforeach
             </tbody>
           </table>
-          <a class="btn btn-primary btn-block" href="{{ route('user.index') }}">See All</a>
+          <div class="col-md-6">
+            <a class="btn btn-primary btn-block" href="{{ route('user.create') }}">Create a User</a>
+          </div>
+          <div class="visible-xs-block visible-sm-block" style="min-height:10px"></div>
+          <div class="col-md-6">
+            <a class="btn btn-primary btn-block" href="{{ route('user.index') }}">See All</a>
+          </div>
         </div>
       </div>
     </div>
