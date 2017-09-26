@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">Upcoming Shows</div>
+        <div class="panel-heading text-center">Upcoming Shows</div>
 
         <div class="panel-body">
           @if(count($upcoming) === 0)
@@ -39,7 +39,7 @@
 
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">Past Shows</div>
+        <div class="panel-heading text-center">Past Shows</div>
 
         <div class="panel-body">
           @if(count($past) === 0)
@@ -76,7 +76,7 @@
     @if(count($viewable) > 0)
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">Viewable Users</div>
+        <div class="panel-heading text-center">Viewable Users</div>
 
         <div class="panel-body">
           <table class="table table-striped">
@@ -106,7 +106,7 @@
     @if(count($viewers) > 0)
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">Users That Can View You</div>
+        <div class="panel-heading text-center">Users That Can View You</div>
 
         <div class="panel-body">
           <table class="table table-striped">

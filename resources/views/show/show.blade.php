@@ -4,7 +4,7 @@
 <div class="container">
   <div class="col-md-12">
     <div class="panel panel-default">
-      <div class="panel-heading">
+      <div class="panel-heading text-center">
         <h2 class="text-center">{{ $show->name }}</h2>
       </div>
     </div>
@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading text-center">
           <h4>Show Information</h4>
         </div>
         <div class="panel-body">
@@ -63,7 +63,7 @@
 
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading text-center">
           <h4>Users</h4>
         </div>
 
@@ -113,7 +113,7 @@
 
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading text-center">
           <h4>Show Files</h4>
         </div>
 

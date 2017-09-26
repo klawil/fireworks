@@ -4,7 +4,7 @@
 <div class="container">
   <div class="col-md-12">
     <div class="panel panel-default">
-      <div class="panel-heading">
+      <div class="panel-heading text-center">
         <h2 class="text-center">Upload a File to {{ $show->name }}</h2>
       </div>
 
