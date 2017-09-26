@@ -35,7 +35,7 @@
               @can('update', $user)
               <tr>
                 <td colspan="2">
-                  <a href="" class="btn btn-primary btn-block">Edit User</a>
+                  <a href="{{ route('user.edit', ['user' => $user]) }}" class="btn btn-primary btn-block">Edit User</a>
                 </td>
               </tr>
               @endcan
