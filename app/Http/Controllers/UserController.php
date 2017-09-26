@@ -22,9 +22,19 @@ class UserController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
+  public function index(Request $request)
   {
-      //
+    // Get the users to display
+    $Users = $request
+      ->user()
+      ->userCanSee()
+      ->orderBy('last_name', 'ASC')
+      ->orderBy('first_name', 'ASC')
+      ->get();
+
+    return view('user.index', [
+      'users' => $Users,
+    ]);
   }
 
   /**
