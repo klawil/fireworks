@@ -261,6 +261,18 @@ class ShowController extends Controller
     // Return the view
     return view('show.user.create', [
       'show' => $show,
+      'users' => $request
+        ->user()
+        ->userCanSee()
+        ->withCount([
+          'shows' => function($query) use ($show) {
+            $query
+              ->where('shows.id', $show->id);
+          }
+        ])
+        ->orderBy('last_name', 'ASC')
+        ->orderBy('first_name', 'ASC')
+        ->get(),
     ]);
   }
 

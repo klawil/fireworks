@@ -11,15 +11,22 @@
           <form class="form-horizontal" method="POST" action="{{ route('show.store') }}">
             {{ csrf_field() }}
 
-            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-              <label for="name" class="col-md-4 control-label">User to Add</label>
+            <div class="form-group{{ $errors->has('user') ? ' has-error' : '' }}">
+              <label for="user" class="col-md-4 control-label">User to Add</label>
 
               <div class="col-md-6">
-                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                <select id="user" name="user" class="form-control" required autofocus>
+                  <option{{ old('user', null) === null ? ' selected' : '' }} disabled>Select a User</option>
+                  @foreach($users as $user)
+                    @if($user->shows_count === 0)
+                      <option{{ old('user', null) === $user->id ? ' selected' : '' }} value="{{ $user->id }}">{{ $user->last_name }}, {{ $user->first_name }}</option>
+                    @endif
+                  @endforeach
+                </select>
 
-                @if ($errors->has('name'))
+                @if ($errors->has('user'))
                   <span class="help-block">
-                    <strong>{{ $errors->first('name') }}</strong>
+                    <strong>{{ $errors->first('user') }}</strong>
                   </span>
                 @endif
               </div>
@@ -109,7 +116,7 @@
               <label for="payment" class="col-md-4 control-label">How much will this person be paid for the show?</label>
 
               <div class="col-md-6">
-                <input id="payment" type="number" class="form-control" name="payment" value="{{ old('payment') }}" autofocus>
+                <input id="payment" type="number" class="form-control" name="payment" value="{{ old('payment') }}">
 
                 @if ($errors->has('payment'))
                   <span class="help-block">
