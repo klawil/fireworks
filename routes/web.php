@@ -19,8 +19,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('show', 'ShowController');
-Route::get('/show/{show}/upload', 'ShowController@uploadForm')->name('show.upload');
-Route::post('/show/{show}/upload', 'ShowController@upload');
+Route::group([
+  'middleware' => ['auth'],
+], function() {
+  /**** USER RESOURCE ****/
+  Route::resource('user', 'UserController');
 
-Route::resource('file', 'FileController');
+  /**** SHOW RESOURCE ****/
+  Route::get('/show/{show}/upload', 'ShowController@uploadForm')->name('show.upload');
+  Route::post('/show/{show}/upload', 'ShowController@upload');
+  Route::get('/show/{show}/user', 'ShowController@userCreate')->name('show.user.create');
+  Route::post('/show/{show}/user', 'ShowController@userStore')->name('show.user.store');
+  Route::resource('show', 'ShowController');
+
+  /**** FILE RESOURCE ****/
+  Route::resource('file', 'FileController', [
+    'only' => ['show']
+  ]);
+});
