@@ -25,13 +25,19 @@
                 <td>{{ $show->planned_date->format('D, M j, Y') }}</td>
                 <td>{{ $show->name }}</td>
                 <td>
-                  <a class="btn btn-success pull-right" href="{{ route('show.show', ['show' => $show]) }}">View Show</a>
+                  <a class="btn btn-info pull-right" href="{{ route('show.show', ['show' => $show]) }}">View Show</a>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
-          <a class="btn btn-info btn-block" href="{{ route('show.index', ['type' => 'future']) }}">See All Future Shows</a>
+          <div class="col-md-6">
+            <a class="btn btn-primary btn-block" href="{{ route('show.create') }}">Create a Show</a>
+          </div>
+          <div class="visible-xs-block visible-sm-block" style="min-height:10px"></div>
+          <div class="col-md-6">
+            <a class="btn btn-primary btn-block" href="{{ route('show.index', ['type' => 'future']) }}">See All Future Shows</a>
+          </div>
           @endif
         </div>
       </div>
@@ -59,13 +65,19 @@
                 <td>{{ $show->planned_date->format('D, M j, Y') }}</td>
                 <td>{{ $show->name }}</td>
                 <td>
-                  <a class="btn btn-success pull-right" href="{{ route('show.show', ['show' => $show]) }}">View Show</a>
+                  <a class="btn btn-info pull-right" href="{{ route('show.show', ['show' => $show]) }}">View Show</a>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
-          <a class="btn btn-info btn-block" href="{{ route('show.index', ['type' => 'past']) }}">See All Past Shows</a>
+          <div class="col-md-6">
+            <a class="btn btn-primary btn-block" href="{{ route('show.create') }}">Create a Show</a>
+          </div>
+          <div class="visible-xs-block visible-sm-block" style="min-height:10px"></div>
+          <div class="col-md-6">
+            <a class="btn btn-primary btn-block" href="{{ route('show.index', ['type' => 'past']) }}">See All Past Shows</a>
+          </div>
           @endif
         </div>
       </div>
@@ -91,13 +103,13 @@
               <tr>
                 <td>{{ $user->last_name }}, {{ $user->first_name }}</td>
                 <td>
-                  <a class="btn btn-success pull-right" href="{{ route('user.show', ['user' => $user]) }}">View User</a>
+                  <a class="btn btn-info pull-right" href="{{ route('user.show', ['user' => $user]) }}">View</a>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
-          <a class="btn btn-info btn-block" href="{{ route('user.index') }}">See All</a>
+          <a class="btn btn-primary btn-block" href="{{ route('user.index') }}">See All</a>
         </div>
       </div>
     </div>
