@@ -33,14 +33,38 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
           <!-- Left Side Of Navbar -->
-          <ul class="nav navbar-nav">&nbsp;</ul>
+          <ul class="nav navbar-nav">
+            @auth
+            <!-- Home Link -->
+            @include('layouts.navlink', [
+              'route' => 'home',
+              'text' => 'Home',
+              'params' => [],
+            ])
+
+            <!-- Create a show Link -->
+            @include('layouts.navlink', [
+              'route' => 'show.create',
+              'text' => 'Create Show',
+              'params' => [],
+            ])
+            @endauth
+          </ul>
 
           <!-- Right Side Of Navbar -->
           <ul class="nav navbar-nav navbar-right">
             <!-- Authentication Links -->
             @guest
-              <li><a href="{{ route('login') }}">Login</a></li>
-              <li><a href="{{ route('register') }}">Register</a></li>
+              @include('layouts.navlink', [
+                'route' => 'login',
+                'text' => 'Login',
+                'params' => [],
+              ])
+              @include('layouts.navlink', [
+                'route' => 'register',
+                'text' => 'Register',
+                'params' => [],
+              ])
             @else
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -49,7 +73,13 @@
 
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a href="{{ route('user.show', ['user' => Auth::user()]) }}">My Profile</a>
+                    @include('layouts.navlink', [
+                      'route' => 'user.show',
+                      'text' => 'My Profile',
+                      'params' => [
+                        'user' => Auth::user(),
+                      ],
+                    ])
                   </li>
                   <li>
                     <a href="{{ route('logout') }}"
