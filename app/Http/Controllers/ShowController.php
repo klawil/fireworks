@@ -123,7 +123,7 @@ class ShowController extends Controller
     $this->authorize('update', $show);
 
     // Return the view
-    return view('show.update', [
+    return view('show.edit', [
       'show' => $show,
     ]);
   }
@@ -242,6 +242,60 @@ class ShowController extends Controller
       ]);
 
     return redirect()
-      ->route('show.show', ['show' => $show]);
+      ->route('show.upload', [
+        'show' => $show
+      ])
+      ->with([
+        'message' => $request->input('relationship') . ' Uploaded Successfully',
+      ]);
+  }
+
+  public function userCreate(Show $show, Request $request)
+  {
+    // Authorize the request
+    $this->authorize('delete', $show);
+
+    // Return the view
+    return view('show.user.create', [
+      'show' => $show,
+    ]);
+  }
+
+  public function userStore(Show $show, Request $request)
+  {
+    // Authorize the request
+    $this->authorize('delete', $show);
+
+    // Validate the request
+    $request->validate([
+      'user_id' => 'required|exists:users',
+      'is_owner' => 'required|boolean',
+      'is_driver' => 'required|boolean',
+      'is_shooter' => 'required|boolean',
+      'is_assistant' => 'required|boolean',
+      'payment' => 'nullable|numeric',
+    ]);
+
+    // Get the user
+    $User = \App\User::find($request->input('user_id'));
+
+    // Make the association
+    $Relationship = $show
+      ->users()
+      ->save($User, [
+        'is_owner' => $request->input('is_owner'),
+        'is_driver' => $request->input('is_driver'),
+        'is_shooter' => $request->input('is_shooter'),
+        'is_assistant' => $request->input('is_assistant'),
+        'payment' => $request->input('payment', null),
+      ]);
+
+    return redirect()
+      ->route('show.user.create', [
+        'show' => $show,
+      ])
+      ->with([
+        'message' => $User->first_name . ' ' . $User->last_name . ' was added as ' . $Relationship->getRoles(),
+      ]);
   }
 }

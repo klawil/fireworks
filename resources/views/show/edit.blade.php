@@ -16,7 +16,7 @@
               <label for="name" class="col-md-4 control-label">Show Name *</label>
 
               <div class="col-md-6">
-                <input id="name" type="text" class="form-control" name="name" value="{{ $show->name }}" required autofocus>
+                <input id="name" type="text" class="form-control" name="name" value="{{ old('name', $show->name) }}" required autofocus>
 
                 @if ($errors->has('name'))
                   <span class="help-block">
@@ -30,7 +30,7 @@
               <label for="price" class="col-md-4 control-label">Billed Price</label>
 
               <div class="col-md-6">
-                <input id="price" type="number" class="form-control" name="price" value="{{ $show->price }}" autofocus>
+                <input id="price" type="number" class="form-control" name="price" value="{{ old('price', $show->price) }}" autofocus>
 
                 @if ($errors->has('price'))
                   <span class="help-block">
@@ -44,7 +44,7 @@
               <label for="planned_date" class="col-md-4 control-label">Planned Date *</label>
 
               <div class="col-md-6">
-                <input id="planned_date" type="date" class="form-control" name="planned_date" value="{{ $show->planned_date->format('Y-m-d') }}" autofocus>
+                <input id="planned_date" type="date" class="form-control" name="planned_date" value="{{ old('planned_date', $show->planned_date)->format('Y-m-d') }}" autofocus>
 
                 @if ($errors->has('planned_date'))
                   <span class="help-block">
@@ -58,7 +58,7 @@
               <label for="planned_location" class="col-md-4 control-label">Planned Location</label>
 
               <div class="col-md-6">
-                <input id="planned_location" type="text" class="form-control" name="planned_location" value="{{ $show->planned_location }}" autofocus>
+                <input id="planned_location" type="text" class="form-control" name="planned_location" value="{{ old('planned_location', $show->planned_location) }}" autofocus>
 
                 @if ($errors->has('planned_location'))
                   <span class="help-block">
@@ -72,7 +72,7 @@
               <label for="rain_date" class="col-md-4 control-label">Rain Date</label>
 
               <div class="col-md-6">
-                <input id="rain_date" type="date" class="form-control" name="rain_date" value="{{ $show->rain_date ? $show->rain_date->format('Y-m-d') : '' }}" autofocus>
+                <input id="rain_date" type="date" class="form-control" name="rain_date" value="{{ old('rain_date', $show->rain_date) ? old('rain_date', $show->rain_date)->format('Y-m-d') : '' }}" autofocus>
 
                 @if ($errors->has('rain_date'))
                   <span class="help-block">
@@ -86,7 +86,7 @@
               <label for="rain_location" class="col-md-4 control-label">Rain Location</label>
 
               <div class="col-md-6">
-                <input id="rain_location" type="text" class="form-control" name="rain_location" value="{{ $show->rain_location }}" autofocus>
+                <input id="rain_location" type="text" class="form-control" name="rain_location" value="{{ old('rain_location', $show->rain_location) }}" autofocus>
 
                 @if ($errors->has('rain_location'))
                   <span class="help-block">
@@ -98,7 +98,7 @@
 
             <div class="form-group">
               <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary btn-block">
                   Save Show
                 </button>
               </div>

@@ -19,34 +19,34 @@
           <table class="table table-striped">
             <tbody>
               <tr>
-                <td>Your Role(s)</td>
+                <th>Your Role(s)</th>
                 <td>{{ $relationship->getRoles() }}</td>
               </tr>
               <tr>
-                <td>Planned Date</td>
+                <th>Planned Date</th>
                 <td>{{ $show->planned_date->format('D, M j, Y') }}</td>
               </tr>
               <tr>
-                <td>Planned Location</td>
+                <th>Planned Location</th>
                 <td>{{ $show->planned_location or "N/A" }}</td>
               </tr>
               <tr>
-                <td>Rain Date</td>
+                <th>Rain Date</th>
                 <td>{{ $show->rain_date ? $show->rain_date->format('D, M j, Y') : "N/A" }}</td>
               </tr>
               <tr>
-                <td>Planned Location</td>
+                <th>Planned Location</th>
                 <td>{{ $show->rain_location or "N/A" }}</td>
               </tr>
               @if($relationship->is_owner)
               <tr>
-                <td>Quoted Price</td>
+                <th>Quoted Price</th>
                 <td>{{ $show->price ? '$' . number_format($show->price, 2) : "N/A" }}</td>
               </tr>
               @endif
               @if($relationship->payment)
               <tr>
-                <td>Your Pay</td>
+                <th>Your Pay</th>
                 <td>${{ number_format($relationship->payment, 2) }}</td>
               </tr>
               @endif
@@ -102,7 +102,7 @@
               @endforeach
               @if($relationship->is_owner)
               <tr>
-                <td colspan="5"><a href="" class="btn btn-primary btn-block">Add a User</a></td>
+                <td colspan="5"><a href="{{ route('show.user.create', ['show' => $show]) }}" class="btn btn-primary btn-block">Add a User</a></td>
               </tr>
               @endif
             </tbody>
