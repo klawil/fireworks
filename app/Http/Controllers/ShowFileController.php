@@ -26,7 +26,13 @@ class ShowFileController extends Controller
    */
   public function index(Show $show)
   {
-    //
+    // Authorize the request
+    $this->authorize('view', $show);
+
+    // Return the view
+    return view('show.file.index', [
+      'show' => $show,
+    ]);
   }
 
   /**
