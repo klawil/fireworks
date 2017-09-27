@@ -9,7 +9,7 @@
       </div>
 
       <div class="panel-body">
-        <form action="{{ route('show.upload', ['show' => $show]) }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+        <form action="{{ route('show.file.store', ['show' => $show]) }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
           {{ csrf_field() }}
 
           <div class="form-group{{ $errors->has('relationship') ? ' has-error' : '' }}">
