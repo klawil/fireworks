@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\ShowFile;
+use App\File;
+use App\Show;
 use Illuminate\Http\Request;
 
 class ShowFileController extends Controller
@@ -54,7 +55,46 @@ class ShowFileController extends Controller
    */
   public function store(Show $show, Request $request)
   {
-    //
+    // Authorize the request
+    $this->authorize('view', $show);
+
+    // Add the file requirement to the rules
+    $this->rules['file'] = 'required|file';
+
+    // Validate the request
+    $request->validate($this->rules);
+
+    // Store the file
+    $Path = $request
+      ->file('file')
+      ->store(\Carbon\Carbon::today()->format('Y/m/d'));
+
+    // Create the file model
+    $file = new File();
+    $file->storage_name = $Path;
+    $file->user_id = $request->user()->id;
+    $file->file_name = $request->file('file')->getClientOriginalName();
+    $file->mimetype = Storage::mimeType($Path);
+    $file->save();
+
+    // Save the relationship to the show
+    $show
+      ->files()
+      ->save($file, [
+        'relationship' => $request->input('relationship'),
+        'driver_viewable' => $request->input('driver_viewable'),
+        'shooter_viewable' => $request->input('shooter_viewable'),
+        'assistant_viewable' => $request->input('assistant_viewable'),
+      ]);
+
+    // Return to the upload page
+    return redirect()
+      ->route('show.file.create', [
+        'show' => $show,
+      ])
+      ->with([
+        'message' => $request->input('relationship') . ' Uploaded Successfully',
+      ]);
   }
 
   /**
