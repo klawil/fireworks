@@ -32,6 +32,7 @@ class File extends Model
   public function show() {
     return $this
       ->belongsToMany('App\Show', 'show_file')
+      ->using('App\ShowFile')
       ->withPivot('relationship', 'shooter_viewable', 'driver_viewable', 'assistant_viewable');
   }
 
