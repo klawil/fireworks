@@ -172,6 +172,22 @@ class ShowFileController extends Controller
    */
   public function destroy(Show $show, File $file)
   {
-    //
+    // Authorize the request
+    $this->authorize('delete', $show);
+
+    // Delete the file
+    $show
+      ->files
+      ->find($file)
+      ->delete();
+
+    // Return the index view
+    return redirect()
+      ->route('show.file.index', [
+        'show' => $show,
+      ])
+      ->with([
+        'message' => 'File Deleted',
+      ]);
   }
 }
