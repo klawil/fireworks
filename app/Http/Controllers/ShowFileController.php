@@ -134,7 +134,33 @@ class ShowFileController extends Controller
    */
   public function update(Request $request, Show $show, File $file)
   {
-    //
+    // Authorize the request
+    $this->authorize('delete', $show);
+
+    // Validate the request
+    $request->validate($this->rules);
+
+    // Get the relationship
+    $relationship = $show
+      ->files
+      ->find($file)
+      ->pivot;
+
+    // Save the new values
+    $relationship->relationship = $request->input('relationship');
+    $relationship->driver_viewable = $request->input('driver_viewable');
+    $relationship->shooter_viewable = $request->input('shooter_viewable');
+    $relationship->assistant_viewable = $request->input('assistant_viewable');
+    $relationship->save();
+
+    // Return to the index page
+    return redirect()
+      ->route('show.file.index', [
+        'show' => $show,
+      ])
+      ->with([
+        'message' => $relationship->relationship . ' Updated',
+      ]);
   }
 
   /**
