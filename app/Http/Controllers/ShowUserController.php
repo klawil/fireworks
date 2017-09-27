@@ -204,6 +204,7 @@ class ShowUserController extends Controller
     $relationship = $show
       ->users
       ->find($user)
+      ->pivot
       ->delete();
 
     // Return to the show view
