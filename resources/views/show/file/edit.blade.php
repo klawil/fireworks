@@ -11,6 +11,7 @@
       <div class="panel-body">
         <form action="{{ route('show.file.update', ['show' => $show, 'file' => $file]) }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
           {{ csrf_field() }}
+          {{ method_field('PUT') }}
 
           <div class="form-group{{ $errors->has('relationship') ? ' has-error' : '' }}">
             <label for="relationship" class="col-md-4 control-label">What is this file?</label>
