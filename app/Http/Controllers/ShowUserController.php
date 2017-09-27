@@ -21,6 +21,22 @@ class ShowUserController extends Controller
   ];
 
   /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index(Show $show)
+  {
+    // Authorize the request
+    $this->authorize('delete', $show);
+
+    // Return the view
+    return view('show.user.index', [
+      'show' => $show,
+    ]);
+  }
+
+  /**
    * Show the form for creating a new resource.
    *
    * @param  Show    $show
