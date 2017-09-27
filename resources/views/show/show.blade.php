@@ -90,7 +90,7 @@
                 @endif
                 @if($relationship->is_owner)
                 <td>
-                  <a class="btn btn-info btn-block">Edit Roles</a>
+                  <a href="{{ route('show.user.edit', ['show' => $show, 'user' => $user])}}" class="btn btn-info btn-block">Edit Roles</a>
                 </td>
                 @endif
                 <td>
