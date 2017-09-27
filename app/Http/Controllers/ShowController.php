@@ -331,4 +331,72 @@ class ShowController extends Controller
         'message' => $User->first_name . ' ' . $User->last_name . ' was added as ' . $Relationship->getRoles(),
       ]);
   }
+
+  /**
+   * Show the form for editing the user-show association
+   *
+   * @param  Show    $show
+   * @param  AppUser $user
+   * @return Response
+   */
+  public function userEdit(Show $show, \App\User $user)
+  {
+    // Authorize the request
+    $this->authorize('delete', $show);
+
+    // Get the user
+    $User = $show
+      ->users
+      ->find($user);
+
+    return view('show.user.edit', [
+      'show' => $show,
+      'user' => $User,
+    ]);
+  }
+
+  /**
+   * Update the specified resource in storage
+   *
+   * @param  Show    $show
+   * @param  AppUser $user
+   * @return Response
+   */
+  public function userUpdate(Show $show, \App\User $user, Request $request)
+  {
+    // Authorize the request
+    $this->authorize('delete', $show);
+
+    // Validate the request
+    $request->validate([
+      'is_owner' => 'required|boolean',
+      'is_driver' => 'required|boolean',
+      'is_shooter' => 'required|boolean',
+      'is_assistant' => 'required|boolean',
+      'payment' => 'nullable|numeric',
+    ]);
+
+    // Get the relationship
+    $Relationship = $show
+      ->users
+      ->find($user)
+      ->pivot;
+
+    // Save the new values
+    $Relationship->is_owner = $request->input('is_owner');
+    $Relationship->is_driver = $request->input('is_driver');
+    $Relationship->is_shooter = $request->input('is_shooter');
+    $Relationship->is_assistant = $request->input('is_assistant');
+    $Relationship->payment = $request->input('payment');
+    $Relationship->save();
+
+    // Return to the show view
+    return redirect()
+      ->route('show.show', [
+        'show' => $show,
+      ])
+      ->with([
+        'message' => $user->first_name . ' ' . $user->last_name . ' Updated',
+      ]);
+  }
 }
