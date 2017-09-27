@@ -125,10 +125,13 @@
                   <td>{{ $file->pivot->relationship }}</td>
                   <td>{{ $file->user()->first()->last_name }}, {{ $file->user()->first()->first_name }}</td>
                   <td>{{ $file->created_at->diffForHumans() }}</td>
-                  <td><a href="{{ route('file.show', ['file' => $file]) }}" class="btn btn-info btn-block">View File</a>
+                  <td><a href="{{ route('file.show', ['file' => $file]) }}" class="btn btn-info btn-block">View</a>
                 </tr>
                 @endcan
               @endforeach
+              <tr>
+                <td colspan="4"><a href="" class="btn btn-primary btn-block">Manage Files</a></td>
+              </tr>
               <tr>
                 <td colspan="4"><a href="{{ route('show.upload', ['show' => $show]) }}" class="btn btn-primary btn-block">Upload a File</a></td>
               </tr>
