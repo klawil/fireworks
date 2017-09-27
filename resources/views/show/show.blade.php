@@ -5,7 +5,7 @@
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading text-center">
-        <h2 class="text-center">{{ $show->name }}</h2>
+        <h2>{{ $show->name }}</h2>
       </div>
     </div>
   </div>
