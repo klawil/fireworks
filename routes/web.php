@@ -30,6 +30,8 @@ Route::group([
   Route::post('/show/{show}/upload', 'ShowController@upload');
   Route::get('/show/{show}/user', 'ShowController@userCreate')->name('show.user.create');
   Route::post('/show/{show}/user', 'ShowController@userStore')->name('show.user.store');
+  Route::get('/show/{show}/user/{user}/edit', 'ShowController@userEdit')->name('show.user.edit');
+  Route::put('/show/{show}/user/{user}', 'ShowController@userUpdate')->name('show.user.update');
   Route::resource('show', 'ShowController');
 
   /**** FILE RESOURCE ****/
