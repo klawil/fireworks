@@ -75,9 +75,7 @@
                 <th>Role(s)</th>
                 @if($relationship->is_owner)
                 <th>Pay</th>
-                <th></th>
                 @endif
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -88,21 +86,14 @@
                 @if($relationship->is_owner)
                 <td>{{ $user->pivot->payment ? '$' . number_format($user->pivot->payment, 2) : 'N/A' }}</td>
                 @endif
-                @if($relationship->is_owner)
-                <td>
-                  <a href="{{ route('show.user.edit', ['show' => $show, 'user' => $user])}}" class="btn btn-info btn-block">Edit Roles</a>
-                </td>
-                @endif
-                <td>
-                  @if($relationship->is_owner || $relationship->user_id === $user->id)
-                  <a class="btn btn-danger btn-block">Remove User</a>
-                  @endif
-                </td>
               </tr>
               @endforeach
               @if($relationship->is_owner)
               <tr>
-                <td colspan="5"><a href="{{ route('show.user.create', ['show' => $show]) }}" class="btn btn-primary btn-block">Add a User</a></td>
+                <td colspan="3"><a href="" class="btn btn-primary btn-block">Manage Users</a></td>
+              </tr>
+              <tr>
+                <td colspan="3"><a href="{{ route('show.user.create', ['show' => $show]) }}" class="btn btn-primary btn-block">Add a User</a></td>
               </tr>
               @endif
             </tbody>
