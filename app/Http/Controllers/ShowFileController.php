@@ -36,7 +36,13 @@ class ShowFileController extends Controller
    */
   public function create(Show $show)
   {
-    //
+    // Authorize the request
+    $this->authorize('view', $show);
+
+    // Return the view
+    return view('show.file.create', [
+      'show' => $show,
+    ]);
   }
 
   /**
