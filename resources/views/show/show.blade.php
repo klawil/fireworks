@@ -127,10 +127,7 @@
                 @endcan
               @endforeach
               <tr>
-                <td colspan="4"><a href="" class="btn btn-primary btn-block">Manage Files</a></td>
-              </tr>
-              <tr>
-                <td colspan="4"><a href="{{ route('show.upload', ['show' => $show]) }}" class="btn btn-primary btn-block">Upload a File</a></td>
+                <td colspan="4"><a href="{{ route('show.file.index', ['show' => $show]) }}" class="btn btn-primary btn-block">Manage Files</a></td>
               </tr>
             </tbody>
           </table>
