@@ -90,10 +90,7 @@
               @endforeach
               @if($relationship->is_owner)
               <tr>
-                <td colspan="3"><a href="" class="btn btn-primary btn-block">Manage Users</a></td>
-              </tr>
-              <tr>
-                <td colspan="3"><a href="{{ route('show.user.create', ['show' => $show]) }}" class="btn btn-primary btn-block">Add a User</a></td>
+                <td colspan="3"><a href="{{ route('show.user.index', ['show' => $show]) }}" class="btn btn-primary btn-block">Manage Users</a></td>
               </tr>
               @endif
             </tbody>
