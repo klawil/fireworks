@@ -31,6 +31,7 @@ Route::group([
   Route::resource('show', 'ShowController');
 
   /**** SHOW USER RESOURCE ****/
+  Route::get('/show/{show}/user', 'ShowUserController@index')->name('show.user.index');
   Route::get('/show/{show}/user/create', 'ShowUserController@create')->name('show.user.create');
   Route::post('/show/{show}/user', 'ShowUserController@store')->name('show.user.store');
   Route::get('/show/{show}/user/{user}/edit', 'ShowUserController@edit')->name('show.user.edit');
