@@ -15,6 +15,7 @@
                 <th>File</th>
                 <th>Uploaded By</th>
                 <th>Uploaded</th>
+                <th>Viewable By</th>
                 <th><!-- View --></th>
                 <th><!-- Edit --></th>
                 @can('delete', $show)
@@ -28,6 +29,7 @@
                   <td>{{ $file->pivot->relationship }}</td>
                   <td>{{ $file->user()->first()->last_name }}, {{ $file->user()->first()->first_name }}</td>
                   <td>{{ $file->created_at->diffForHumans() }}</td>
+                  <td>{{ $file->pivot->getRoles() }}</td>
                   <td>
                     <a href="{{ route('file.show', ['file' => $file]) }}" class="btn btn-info btn-block">View</a>
                   </td>
