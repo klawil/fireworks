@@ -112,7 +112,16 @@ class ShowFileController extends Controller
    */
   public function edit(Show $show, File $file)
   {
-    //
+    // Authorize the request
+    $this->authorize('delete', $show);
+
+    // Return the view
+    return view('show.file.edit', [
+      'show' => $show,
+      'file' => $show
+        ->files
+        ->find($file),
+    ]);
   }
 
   /**
