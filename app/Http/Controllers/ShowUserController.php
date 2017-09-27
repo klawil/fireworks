@@ -196,7 +196,7 @@ class ShowUserController extends Controller
 
     // Return to the show view
     return redirect()
-      ->route('show.show', [
+      ->route('show.user.index', [
         'show' => $show,
       ])
       ->with([
@@ -225,7 +225,7 @@ class ShowUserController extends Controller
 
     // Return to the show view
     return redirect()
-      ->route('show.show', [
+      ->route('show.user.index', [
         'show' => $show,
       ])
       ->with([
