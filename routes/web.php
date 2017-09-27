@@ -26,8 +26,6 @@ Route::group([
   Route::resource('user', 'UserController');
 
   /**** SHOW RESOURCE ****/
-  Route::get('/show/{show}/upload', 'ShowController@uploadForm')->name('show.upload');
-  Route::post('/show/{show}/upload', 'ShowController@upload');
   Route::resource('show', 'ShowController');
 
   /**** SHOW USER RESOURCE ****/
@@ -37,6 +35,14 @@ Route::group([
   Route::get('/show/{show}/user/{user}/edit', 'ShowUserController@edit')->name('show.user.edit');
   Route::put('/show/{show}/user/{user}', 'ShowUserController@update')->name('show.user.update');
   Route::delete('/show/{show}/user/{user}', 'ShowUserController@destroy')->name('show.user.destroy');
+
+  /**** SHOW FILE RESOURCE ****/
+  Route::get('/show/{show}/file', 'ShowFileController@index')->name('show.file.index');
+  Route::get('/show/{show}/file/create', 'ShowFileController@create')->name('show.file.create');
+  Route::post('/show/{show}/file', 'ShowFileController@store')->name('show.file.store');
+  Route::get('/show/{show}/file/{file}/edit', 'ShowFileController@edit')->name('show.file.edit');
+  Route::put('/show/{show}/file/{file}', 'ShowFileController@update')->name('show.file.update');
+  Route::delete('/show/{show}/file/{file}', 'ShowFileController@destroy')->name('show.file.destroy');
 
   /**** FILE RESOURCE ****/
   Route::resource('file', 'FileController', [
