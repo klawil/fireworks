@@ -28,11 +28,14 @@ Route::group([
   /**** SHOW RESOURCE ****/
   Route::get('/show/{show}/upload', 'ShowController@uploadForm')->name('show.upload');
   Route::post('/show/{show}/upload', 'ShowController@upload');
-  Route::get('/show/{show}/user', 'ShowController@userCreate')->name('show.user.create');
-  Route::post('/show/{show}/user', 'ShowController@userStore')->name('show.user.store');
-  Route::get('/show/{show}/user/{user}/edit', 'ShowController@userEdit')->name('show.user.edit');
-  Route::put('/show/{show}/user/{user}', 'ShowController@userUpdate')->name('show.user.update');
   Route::resource('show', 'ShowController');
+
+  /**** SHOW USER RESOURCE ****/
+  Route::get('/show/{show}/user/create', 'ShowUserController@create')->name('show.user.create');
+  Route::post('/show/{show}/user', 'ShowUserController@store')->name('show.user.store');
+  Route::get('/show/{show}/user/{user}/edit', 'ShowUserController@edit')->name('show.user.edit');
+  Route::put('/show/{show}/user/{user}', 'ShowUserController@update')->name('show.user.update');
+  Route::delete('/show/{show}/user/{user}', 'ShowUserController@destroy')->name('show.user.destroy');
 
   /**** FILE RESOURCE ****/
   Route::resource('file', 'FileController', [
