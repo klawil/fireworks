@@ -48,7 +48,7 @@
                 </tr>
               @endforeach
               <tr>
-                <td colspan="8"><a href="{{ route('show.user.create', ['show' => $show]) }}" class="btn btn-primary btn-block">Add a User</a></td>
+                <td colspan="8"><a href="{{ route('show.file.create', ['show' => $show]) }}" class="btn btn-primary btn-block">Add a File</a></td>
               </tr>
             </tbody>
           </table>
