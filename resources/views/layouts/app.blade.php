@@ -8,7 +8,11 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  @if(isset($title))
+    <title>{{ $title }} | {{ config('app.name', 'Laravel') }}</title>
+  @else
+    <title>{{ config('app.name', 'Laravel') }}</title>
+  @endif
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -104,6 +108,16 @@
     <div class="container">
       <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
     </div>
+    @endif
+
+    @if(isset($title))
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading text-center">
+            <h2>{{ $title }}</h2>
+          </div>
+        </div>
+      </div>
     @endif
 
     @yield('content')
