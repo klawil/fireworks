@@ -57,7 +57,18 @@ class ShowController extends Controller
    */
   public function create()
   {
-    return view('show.create');
+    return view('show.create', [
+      'breadcrumbs' => [
+        [
+          'text' => 'Shows',
+          'url' => route('show.index'),
+        ],
+        [
+          'text' => 'Create',
+          'url' => route('show.create'),
+        ],
+      ],
+    ]);
   }
 
   /**
