@@ -34,6 +34,12 @@ class UserController extends Controller
 
     return view('user.index', [
       'users' => $Users,
+      'breadcrumbs' => [
+        [
+          'text' => 'Users',
+          'url' => route('user.index'),
+        ],
+      ],
     ]);
   }
 
@@ -45,7 +51,18 @@ class UserController extends Controller
   public function create()
   {
     // Return the view
-    return view('user.create');
+    return view('user.create', [
+      'breadcrumbs' => [
+        [
+          'text' => 'Users',
+          'url' => route('user.index'),
+        ],
+        [
+          'text' => 'Create',
+          'url' => route('user.create'),
+        ],
+      ],
+    ]);
   }
 
   /**
@@ -90,6 +107,18 @@ class UserController extends Controller
     // Return the view
     return view('user.show', [
       'user' => $user,
+      'breadcrumbs' => [
+        [
+          'text' => 'Users',
+          'url' => route('user.index'),
+        ],
+        [
+          'text' => $user->first_name . ' ' . $user->last_name,
+          'url' => route('user.show', [
+            'user' => $user,
+          ]),
+        ],
+      ],
     ]);
   }
 
@@ -107,6 +136,24 @@ class UserController extends Controller
     // Return the view
     return view('user.edit', [
       'user' => $user,
+      'breadcrumbs' => [
+        [
+          'text' => 'Users',
+          'url' => route('user.index'),
+        ],
+        [
+          'text' => $user->first_name . ' ' . $user->last_name,
+          'url' => route('user.show', [
+            'user' => $user,
+          ]),
+        ],
+        [
+          'text' => 'Edit',
+          'url' => route('user.edit', [
+            'user' => $user,
+          ]),
+        ],
+      ],
     ]);
   }
 

@@ -33,6 +33,24 @@ class ShowUserController extends Controller
     // Return the view
     return view('show.user.index', [
       'show' => $show,
+      'breadcrumbs' => [
+        [
+          'url' => route('show.index'),
+          'text' => 'Shows',
+        ],
+        [
+          'text' => $show->name,
+          'url' => route('show.show', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => 'Users',
+          'url' => route('show.user.index', [
+            'show' => $show,
+          ]),
+        ],
+      ],
     ]);
   }
 
@@ -67,6 +85,30 @@ class ShowUserController extends Controller
         ->orderBy('last_name', 'ASC')
         ->orderBy('first_name', 'ASC')
         ->get(),
+      'breadcrumbs' => [
+        [
+          'url' => route('show.index'),
+          'text' => 'Shows',
+        ],
+        [
+          'text' => $show->name,
+          'url' => route('show.show', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => 'Users',
+          'url' => route('show.user.index', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => 'Add',
+          'url' => route('show.user.create', [
+            'show' => $show,
+          ]),
+        ],
+      ],
     ]);
   }
 
@@ -161,6 +203,37 @@ class ShowUserController extends Controller
     return view('show.user.edit', [
       'show' => $show,
       'user' => $userWithPivot,
+      'breadcrumbs' => [
+        [
+          'url' => route('show.index'),
+          'text' => 'Shows',
+        ],
+        [
+          'text' => $show->name,
+          'url' => route('show.show', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => 'Users',
+          'url' => route('show.user.index', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => $user->first_name . ' ' . $user->last_name,
+          'url' => route('user.show', [
+            'user' => $user,
+          ]),
+        ],
+        [
+          'text' => 'Edit',
+          'url' => route('show.user.edit', [
+            'show' => $show,
+            'user' => $user,
+          ]),
+        ],
+      ],
     ]);
   }
 

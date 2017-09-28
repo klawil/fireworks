@@ -110,6 +110,18 @@ class ShowController extends Controller
     return view('show.show', [
       'show' => $show,
       'relationship' => $ShowRelationship->pivot,
+      'breadcrumbs' => [
+        [
+          'url' => route('show.index'),
+          'text' => 'Shows',
+        ],
+        [
+          'text' => $show->name,
+          'url' => route('show.show', [
+            'show' => $show,
+          ]),
+        ],
+      ],
     ]);
   }
 
@@ -127,6 +139,24 @@ class ShowController extends Controller
     // Return the view
     return view('show.edit', [
       'show' => $show,
+      'breadcrumbs' => [
+        [
+          'url' => route('show.index'),
+          'text' => 'Shows',
+        ],
+        [
+          'text' => $show->name,
+          'url' => route('show.show', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => 'Edit',
+          'url' => route('show.edit', [
+            'show' => $show,
+          ]),
+        ],
+      ],
     ]);
   }
 

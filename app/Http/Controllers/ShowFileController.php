@@ -33,6 +33,24 @@ class ShowFileController extends Controller
     // Return the view
     return view('show.file.index', [
       'show' => $show,
+      'breadcrumbs' => [
+        [
+          'url' => route('show.index'),
+          'text' => 'Shows',
+        ],
+        [
+          'text' => $show->name,
+          'url' => route('show.show', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => 'Files',
+          'url' => route('show.file.index', [
+            'show' => $show,
+          ]),
+        ],
+      ],
     ]);
   }
 
@@ -50,6 +68,30 @@ class ShowFileController extends Controller
     // Return the view
     return view('show.file.create', [
       'show' => $show,
+      'breadcrumbs' => [
+        [
+          'url' => route('show.index'),
+          'text' => 'Shows',
+        ],
+        [
+          'text' => $show->name,
+          'url' => route('show.show', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => 'Files',
+          'url' => route('show.file.index', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => 'Upload',
+          'url' => route('show.file.create', [
+            'show' => $show,
+          ]),
+        ],
+      ],
     ]);
   }
 
@@ -116,12 +158,48 @@ class ShowFileController extends Controller
     // Authorize the request
     $this->authorize('delete', $show);
 
+    // Get the file relationship
+    $fileWithPivot = $show
+      ->files
+      ->find($file);
+
     // Return the view
     return view('show.file.edit', [
       'show' => $show,
-      'file' => $show
-        ->files
-        ->find($file),
+      'file' => $fileWithPivot,
+      'breadcrumbs' => [
+        [
+          'url' => route('show.index'),
+          'text' => 'Shows',
+        ],
+        [
+          'text' => $show->name,
+          'url' => route('show.show', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => 'Files',
+          'url' => route('show.file.index', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => $fileWithPivot
+            ->pivot
+            ->relationship,
+          'url' => route('file.show', [
+            'file' => $file,
+          ]),
+        ],
+        [
+          'text' => 'Edit',
+          'url' => route('show.file.edit', [
+            'show' => $show,
+            'file' => $file,
+          ]),
+        ],
+      ],
     ]);
   }
 
