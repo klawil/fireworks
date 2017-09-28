@@ -34,6 +34,7 @@ class UserController extends Controller
 
     return view('user.index', [
       'users' => $Users,
+      'title' => 'Users',
       'breadcrumbs' => [
         [
           'text' => 'Users',
@@ -52,6 +53,7 @@ class UserController extends Controller
   {
     // Return the view
     return view('user.create', [
+      'title' => 'Create User',
       'breadcrumbs' => [
         [
           'text' => 'Users',
@@ -107,6 +109,7 @@ class UserController extends Controller
     // Return the view
     return view('user.show', [
       'user' => $user,
+      'title' => $user->first_name . ' ' . $user->last_name,
       'breadcrumbs' => [
         [
           'text' => 'Users',
@@ -136,6 +139,7 @@ class UserController extends Controller
     // Return the view
     return view('user.edit', [
       'user' => $user,
+      'title' => 'Edit ' . $user->first_name . ' ' . $user->last_name,
       'breadcrumbs' => [
         [
           'text' => 'Users',

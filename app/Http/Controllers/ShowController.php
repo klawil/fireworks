@@ -58,6 +58,7 @@ class ShowController extends Controller
   public function create()
   {
     return view('show.create', [
+      'title' => 'Create Show',
       'breadcrumbs' => [
         [
           'text' => 'Shows',
@@ -121,6 +122,7 @@ class ShowController extends Controller
     return view('show.show', [
       'show' => $show,
       'relationship' => $ShowRelationship->pivot,
+      'title' => $show->name,
       'breadcrumbs' => [
         [
           'url' => route('show.index'),
@@ -150,6 +152,7 @@ class ShowController extends Controller
     // Return the view
     return view('show.edit', [
       'show' => $show,
+      'title' => 'Edit ' . $show->name,
       'breadcrumbs' => [
         [
           'url' => route('show.index'),

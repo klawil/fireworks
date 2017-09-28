@@ -33,6 +33,7 @@ class ShowFileController extends Controller
     // Return the view
     return view('show.file.index', [
       'show' => $show,
+      'title' => $show->name . ' Files',
       'breadcrumbs' => [
         [
           'url' => route('show.index'),
@@ -68,6 +69,7 @@ class ShowFileController extends Controller
     // Return the view
     return view('show.file.create', [
       'show' => $show,
+      'title' => 'Upload to ' . $show->name,
       'breadcrumbs' => [
         [
           'url' => route('show.index'),
@@ -167,6 +169,7 @@ class ShowFileController extends Controller
     return view('show.file.edit', [
       'show' => $show,
       'file' => $fileWithPivot,
+      'title' => 'Edit ' . $fileWithPivot->pivot->relationship . ' on ' . $show->name,
       'breadcrumbs' => [
         [
           'url' => route('show.index'),

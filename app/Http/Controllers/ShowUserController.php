@@ -33,6 +33,7 @@ class ShowUserController extends Controller
     // Return the view
     return view('show.user.index', [
       'show' => $show,
+      'title' => $show->name . ' Users',
       'breadcrumbs' => [
         [
           'url' => route('show.index'),
@@ -85,6 +86,7 @@ class ShowUserController extends Controller
         ->orderBy('last_name', 'ASC')
         ->orderBy('first_name', 'ASC')
         ->get(),
+      'title' => 'Add User to ' . $show->name,
       'breadcrumbs' => [
         [
           'url' => route('show.index'),
@@ -203,6 +205,7 @@ class ShowUserController extends Controller
     return view('show.user.edit', [
       'show' => $show,
       'user' => $userWithPivot,
+      'title' => 'Edit ' . $user->first_name . ' ' . $user->last_name . ' on ' . $show->name,
       'breadcrumbs' => [
         [
           'url' => route('show.index'),

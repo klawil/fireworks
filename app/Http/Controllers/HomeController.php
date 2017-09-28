@@ -62,6 +62,7 @@ class HomeController extends Controller
         'past' => $PastShows,
         'viewable' => $ViewableUsers,
         'viewers' => $ViewingUsers,
+        'title' => 'Home',
       ]
     );
   }
