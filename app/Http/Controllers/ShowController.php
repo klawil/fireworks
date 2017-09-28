@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use \Storage;
 use App\Show;
 use App\ShowRole;
 use Illuminate\Http\Request;
