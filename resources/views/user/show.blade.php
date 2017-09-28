@@ -4,7 +4,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading text-center">{{ $user->last_name }}, {{ $user->first_name }}</div>
+        <div class="panel-heading text-center">
+          <h4>{{ $user->last_name }}, {{ $user->first_name }}</h4>
+        </div>
 
         <div class="panel-body">
           <table class="table table-striped">

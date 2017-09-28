@@ -4,7 +4,9 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
-        <div class="panel-heading text-center">{{ $title }}</div>
+        <div class="panel-heading text-center">
+          <h4>{{ $title }}</h4>
+        </div>
 
         <div class="panel-body">
           @if(count($shows) === 0)

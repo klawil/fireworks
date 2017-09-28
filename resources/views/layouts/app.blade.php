@@ -110,16 +110,6 @@
     </div>
     @endif
 
-    @if(isset($title))
-      <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading text-center">
-            <h2>{{ $title }}</h2>
-          </div>
-        </div>
-      </div>
-    @endif
-
     @yield('content')
   </div>
 
