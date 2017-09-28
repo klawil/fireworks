@@ -45,6 +45,13 @@
             'params' => [],
           ])
 
+          <!-- Shows Link -->
+          @include('layouts.navlink', [
+            'route' => 'show.index',
+            'text' => 'My Shows',
+            'params' => [],
+          ])
+
           <!-- Create a show Link -->
           @include('layouts.navlink', [
             'route' => 'show.create',
