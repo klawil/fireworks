@@ -98,6 +98,8 @@
   </nav>
 
   <div class="container">
+    @include('layouts.breadcrumbs')
+
     @if(Session::has('message'))
     <div class="container">
       <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
