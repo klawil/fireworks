@@ -120,4 +120,10 @@ return [
         ],
     ],
 
+    'ses' => [
+        'key' => env('MAIL_KEY'),
+        'secret' => env('MAIL_SECRET'),
+        'region' => env('MAIL_REGION'),
+    ],
+
 ];
