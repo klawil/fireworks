@@ -14,6 +14,7 @@ class LicenseController extends Controller
    * The validation rules for a license
    */
   private $rules = [
+    'file' => 'nullable|file',
     'type' => 'required|string|max:255',
     'state' => 'required|string|max:50',
     'license_number' => 'nullable|string|max:255',
@@ -66,9 +67,6 @@ class LicenseController extends Controller
   {
     // Authorize the request
     $this->authorize('update', $user);
-
-    // Add the file to the rules
-    $this->rules['file'] = 'nullable|file';
 
     // Validate the request
     $request->validate($this->rules);
