@@ -33,7 +33,7 @@ class LicensePolicy
   public function update(User $user, License $license)
   {
     // Authorize that the viewer can edit the user associated with the license
-    return $user->can('edit', $license->user);
+    return $user->can('update', $license->user);
   }
 
   /**
@@ -46,6 +46,6 @@ class LicensePolicy
   public function delete(User $user, License $license)
   {
     // Authorize that the viewer can edit the user associated with the license
-    return $user->can('edit', $license->user);
+    return $user->can('update', $license->user);
   }
 }
