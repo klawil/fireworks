@@ -51,4 +51,14 @@ class Show extends Model
       ->orderBy('last_name', 'asc')
       ->orderBy('first_name', 'asc');
   }
+
+  /**
+   * The contacts that belong to the show
+   * @return App\Contact The contacts and their information
+   */
+  public function contacts() {
+    return $this
+      ->hasMany('App\Contact')
+      ->orderBy('name', 'asc');
+  }
 }
