@@ -120,7 +120,33 @@ class LicenseController extends Controller
    */
   public function show(License $license)
   {
-    //
+    // Authorize the request
+    $this->authorize('view', $license);
+
+    // Return the view
+    return view('user.license.show', [
+      'user' => $license->user,
+      'license' => $license,
+      'title' => $license->user->first_name . ' ' . $license->user->last_name . ' ' . $license->type . ' License',
+      'breadcrumbs' => [
+        [
+          'text' => 'Users',
+          'url' => route('user.index'),
+        ],
+        [
+          'text' => $license->user->first_name . ' ' . $license->user->last_name,
+          'url' => route('user.show', [
+            'user' => $license->user,
+          ]),
+        ],
+        [
+          'text' => $license->type . ' License',
+          'url' => route('user.license.show', [
+            'license' => $license,
+          ]),
+        ],
+      ],
+    ]);
   }
 
   /**
@@ -131,7 +157,41 @@ class LicenseController extends Controller
    */
   public function edit(License $license)
   {
-    //
+    // Authorize the request
+    $this->authorize('edit', $license);
+
+    // Return the view
+    return view('user.license.edit', [
+      'user' => $license->user,
+      'license' => $license,
+      'title' => $license->user->first_name . ' ' . $license->user->last_name . ' ' . $license->type . ' License',
+      'breadcrumbs' => [
+        [
+          'text' => 'Users',
+          'url' => route('user.index'),
+        ],
+        [
+          'text' => $license->user->first_name . ' ' . $license->user->last_name,
+          'url' => route('user.show', [
+            'user' => $license->user,
+          ]),
+        ],
+        [
+          'text' => $license->type . ' License',
+          'url' => route('user.license.show', [
+            'user' => $license->user,
+            'license' => $license,
+          ]),
+        ],
+        [
+          'text' => 'Edit',
+          'url' => route('user.license.edit', [
+            'user' => $license->user,
+            'license' => $license,
+          ]),
+        ],
+      ],
+    ]);
   }
 
   /**
@@ -143,7 +203,51 @@ class LicenseController extends Controller
    */
   public function update(Request $request, License $license)
   {
-    //
+    // Authorize the request
+    $this->authorize('edit', $license);
+
+    // Validate the request
+    $request->validate($this->rules);
+
+    // Determine if a file needs to be created
+    $fileId = null;
+    if ($request->file('file') !== NULL) {
+      // Save the file
+      $path = $request
+        ->file('file')
+        ->store(\Carbon\Carbon::today()->format('Y/m/d'));
+
+      // Make the file model
+      $file = new File();
+      $file->storage_name = $path;
+      $file->user_id = $request->user()->id;
+      $file->file_name = $request->file('file')->getClientOriginalName();
+      $file->mimetype = Storage::mimeType($path);
+      $file->save();
+
+      // Save the file ID
+      $fileId = $file->id;
+    }
+
+    // Update and store the license
+    $license->file_id = $fileId === NULL
+      ? $license->file_id
+      : $fileId;
+    $license->type = $request->input('type');
+    $license->state = $request->input('state');
+    $license->license_number = $request->input('license_number');
+    $license->issue_date = $request->input('issue_date');
+    $license->expire_date = $request->input('expire_date');
+    $license->save();
+
+    // Return to the license page
+    return redirect()
+      ->route('user.license.edit', [
+        'license' => $license,
+      ])
+      ->with([
+        'message' => $license->type . ' License Updated',
+      ]);
   }
 
   /**
@@ -154,6 +258,19 @@ class LicenseController extends Controller
    */
   public function destroy(License $license)
   {
-    //
+    // Authorize the request
+    $this->authorize('destroy', $license);
+
+    // Destroy the license
+    $license->delete();
+
+    // Return to the user page
+    return redirect()
+      ->route('user.show', [
+        'user' => $license->user,
+      ])
+      ->with([
+        'message' => $license->type . ' License Deleted',
+      ]);
   }
 }
