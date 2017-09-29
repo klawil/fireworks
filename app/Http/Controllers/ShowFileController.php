@@ -158,7 +158,7 @@ class ShowFileController extends Controller
   public function edit(Show $show, File $file)
   {
     // Authorize the request
-    $this->authorize('delete', $show);
+    $this->authorize('view', $show);
 
     // Get the file relationship
     $fileWithPivot = $show
@@ -217,7 +217,7 @@ class ShowFileController extends Controller
   public function update(Request $request, Show $show, File $file)
   {
     // Authorize the request
-    $this->authorize('delete', $show);
+    $this->authorize('view', $show);
 
     // Validate the request
     $request->validate($this->rules);
