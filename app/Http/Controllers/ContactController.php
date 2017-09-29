@@ -229,7 +229,27 @@ class ContactController extends Controller
    */
   public function update(Request $request, Contact $contact)
   {
-    //
+    // Authorize the request
+    $this->authorize('update', $contact);
+
+    // Validate the request
+    $request->validate($this->rules);
+
+    // Build the contact
+    $contact->name = $request->input('name');
+    $contact->description = $request->input('description');
+    $contact->phone = $request->input('phone');
+    $contact->email = $request->input('email');
+    $contact->save();
+
+    // Return the create view
+    return redirect()
+      ->route('show.contact.show', [
+        'contact' => $contact,
+      ])
+      ->with([
+        'message' => "{$contact->name} Updated",
+      ]);
   }
 
   /**
