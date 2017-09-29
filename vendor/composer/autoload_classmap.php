@@ -29,6 +29,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\License' => $baseDir . '/app/License.php',
     'App\\Policies\\FilePolicy' => $baseDir . '/app/Policies/FilePolicy.php',
+    'App\\Policies\\LicensePolicy' => $baseDir . '/app/Policies/LicensePolicy.php',
     'App\\Policies\\ShowPolicy' => $baseDir . '/app/Policies/ShowPolicy.php',
     'App\\Policies\\UserPolicy' => $baseDir . '/app/Policies/UserPolicy.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

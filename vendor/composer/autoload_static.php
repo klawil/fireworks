@@ -402,6 +402,7 @@ class ComposerStaticInitc773f29ad72bffea8a2a9bfec684227f
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\License' => __DIR__ . '/../..' . '/app/License.php',
         'App\\Policies\\FilePolicy' => __DIR__ . '/../..' . '/app/Policies/FilePolicy.php',
+        'App\\Policies\\LicensePolicy' => __DIR__ . '/../..' . '/app/Policies/LicensePolicy.php',
         'App\\Policies\\ShowPolicy' => __DIR__ . '/../..' . '/app/Policies/ShowPolicy.php',
         'App\\Policies\\UserPolicy' => __DIR__ . '/../..' . '/app/Policies/UserPolicy.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
