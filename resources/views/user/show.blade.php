@@ -44,6 +44,44 @@
           </table>
         </div>
       </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <h4>Licenses</h4>
+        </div>
+
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>State</th>
+                <th>Issue Date</th>
+                <th>Expire Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($user->licenses as $license)
+                <tr>
+                  <td>{{ $license->type }}</td>
+                  <td>{{ $license->state }}</td>
+                  <td>{{ $license->issue_date->format('D, M j, Y') }}</td>
+                  <td>{{ $license->expire_date->format('D, M j, Y') }}</td>
+                  <td><a href="{{ route('user.license.show', ['license' => $license]) }}" class="btn btn-info btn-block">View</a></td>
+                </tr>
+              @endforeach
+              @can('update', $user)
+                <tr>
+                  <td colspan="10">
+                    <a href="{{ route('user.license.create', ['user' => $user]) }}" class="btn btn-primary btn-block">Create License</a>
+                  </td>
+                </tr>
+              @endcan
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 @endsection
