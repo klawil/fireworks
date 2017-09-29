@@ -259,7 +259,7 @@ class LicenseController extends Controller
   public function destroy(License $license)
   {
     // Authorize the request
-    $this->authorize('destroy', $license);
+    $this->authorize('delete', $license);
 
     // Destroy the license
     $license->delete();
