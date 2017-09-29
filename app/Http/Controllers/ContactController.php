@@ -110,7 +110,7 @@ class ContactController extends Controller
     return view('show.contact.show', [
       'show' => $contact->show,
       'contact' => $contact,
-      'title' => "Create {$contact->show->name} Contact",
+      'title' => "{$contact->name} for {$contact->show->name}",
       'breadcrumbs' => [
         [
           'text' => 'Shows',
