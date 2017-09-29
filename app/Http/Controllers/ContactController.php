@@ -260,6 +260,19 @@ class ContactController extends Controller
    */
   public function destroy(Contact $contact)
   {
-    //
+    // Authorize the request
+    $this->authorize('delete', $contact);
+
+    // Delete the contact
+    $contact->delete();
+
+    // Return to the index page
+    return redirect()
+      ->route('show.contact.index', [
+        'show' => $contact->show,
+      ])
+      ->with([
+        'message' => "{$contact->name} Deleted",
+      ]);
   }
 }
