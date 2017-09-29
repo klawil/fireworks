@@ -8,13 +8,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class License extends Model
 {
   use SoftDeletes;
-  
+
   /**
    * The table associated with the model.
    *
    * @var string
    */
   protected $table = 'license';
+
+  /**
+   * The date rows on the table
+   * @var Array
+   */
+  protected $dates = ['issue_date', 'expire_date'];
 
   /**
    * The user that uploaded the file

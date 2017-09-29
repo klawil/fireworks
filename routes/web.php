@@ -25,6 +25,19 @@ Route::group([
   /**** USER RESOURCE ****/
   Route::resource('user', 'UserController');
 
+  /**** USER LICENSE RESOURCE ****/
+  Route::get('/user/{user}/license/create', 'LicenseController@create')->name('user.license.create');
+  Route::post('/user/{user}/license', 'LicenseController@store')->name('user.license.store');
+  Route::resource('license', 'LicenseController', [
+    'except' => ['create', 'store', 'index'],
+    'names' => [
+      'show' => 'user.license.show',
+      'edit' => 'user.license.edit',
+      'update' => 'user.license.update',
+      'destroy' => 'user.license.destroy',
+    ],
+  ]);
+
   /**** SHOW RESOURCE ****/
   Route::resource('show', 'ShowController');
 

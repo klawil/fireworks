@@ -15,7 +15,7 @@
             <label for="relationship" class="col-md-4 control-label">What is this file?</label>
 
             <div class="col-md-6">
-              <input id="relationship" name="relationship" type="text" class="form-control" value="{{ old('relationship') }}" required>
+              <input id="relationship" name="relationship" type="text" class="form-control" value="{{ old('relationship') }}" autofocus required>
 
               @if ($errors->has('relationship'))
               <span class="help-block">
@@ -29,7 +29,7 @@
             <label for="file" class="col-md-4 control-label">Choose a file to upload</label>
 
             <div class="col-md-6">
-              <input id="file" name="file" type="file" class="form-control" value="{{ old('file') }}" required>
+              <input id="file" name="file" type="file" class="form-control" required>
 
               @if ($errors->has('file'))
               <span class="help-block">
