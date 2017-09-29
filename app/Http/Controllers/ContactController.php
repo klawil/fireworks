@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
   /**
+   * The validation rules for the item
+   * @var array
+   */
+  private $rules = [
+    'name' => 'required|string|max:255',
+    'description' => 'nullable|string|max:255',
+    'phone' => 'nullable|string|max:11',
+    'email' => 'nullable|email',
+  ];
+
+  /**
    * Display a listing of the resource.
    *
    * @return \Illuminate\Http\Response
@@ -90,9 +101,31 @@ class ContactController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(Show $show, Request $request)
   {
-    //
+    // Authorize the request
+    $this->authorize('view', $show);
+
+    // Validate the request
+    $request->validate($this->rules);
+
+    // Build the contact
+    $contact = new Contact();
+    $contact->name = $request->input('name');
+    $contact->description = $request->input('description');
+    $contact->phone = $request->input('phone');
+    $contact->email = $request->input('email');
+    $contact->show_id = $show->id;
+    $contact->save();
+
+    // Return the create view
+    return redirect()
+      ->route('show.contact.create', [
+        'show' => $show,
+      ])
+      ->with([
+        'message' => "{$contact->name} Created",
+      ]);
   }
 
   /**
