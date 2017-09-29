@@ -40,6 +40,18 @@
                   </td>
                 </tr>
               @endcan
+              @can('delete', $license)
+                <tr>
+                  <td colspan="3">
+                    <form action="{{ route('user.license.destroy', ['license' => $license]) }}" method="POST">
+                      {{ csrf_field() }}
+                      {{ method_field('DELETE') }}
+
+                      <button type="submit" class="btn btn-danger btn-block">Delete License</button>
+                    </form>
+                  </td>
+                </tr>
+              @endcan
             </tbody>
           </table>
         </div>
