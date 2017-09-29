@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Show;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -20,7 +21,7 @@ class ContactController extends Controller
     // Return the view
     return view('show.contact.index', [
       'show' => $show,
-      'title' => $show->name ' Contacts',
+      'title' => "{$show->name } Contacts",
       'breadcrumbs' => [
         [
           'text' => 'Shows',
