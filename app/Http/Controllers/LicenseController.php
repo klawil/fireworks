@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class LicenseController extends Controller
 {
+  /**
+   * The validation rules for a license
+   */
   private $rules = [
     'type' => 'required|string|max:255',
     'state' => 'required|string|max:50',
