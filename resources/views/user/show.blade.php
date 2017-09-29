@@ -56,8 +56,7 @@
               <tr>
                 <th>Type</th>
                 <th>State</th>
-                <th>Issue Date</th>
-                <th>Expire Date</th>
+                <th>Valid</th>
                 <th></th>
               </tr>
             </thead>
@@ -66,8 +65,7 @@
                 <tr>
                   <td>{{ $license->type }}</td>
                   <td>{{ $license->state }}</td>
-                  <td>{{ $license->issue_date->format('D, M j, Y') }}</td>
-                  <td>{{ $license->expire_date->format('D, M j, Y') }}</td>
+                  <td>{{ $license->issue_date->format('Y M j') }} to {{ $license->expire_date->format('Y M j') }}</td>
                   <td><a href="{{ route('user.license.show', ['license' => $license]) }}" class="btn btn-info btn-block">View</a></td>
                 </tr>
               @endforeach
