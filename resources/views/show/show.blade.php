@@ -134,6 +134,42 @@
       </div>
     </div>
 
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <h4>Contacts</h4>
+        </div>
+
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($show->contacts as $contact)
+                @can('view', $contact)
+                  <tr>
+                    <td>{{ $contact->name }}</td>
+                    <td>{{ $contact->phone or 'N/A' }}</td>
+                    <td>{{ $contact->email or 'N/A' }}</td>
+                    <td><a href="{{ route('show.contact.show', ['contact' => $contact]) }}" class="btn btn-info btn-block">View</a>
+                  </tr>
+                @endcan
+              @endforeach
+              <tr>
+                <td colspan="4"><a href="{{ route('show.contact.index', ['show' => $show]) }}" class="btn btn-primary btn-block">Manage Contacts</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     @can('delete', $show)
     <div class="col-xs-12">
       <div class="panel panel-default">
