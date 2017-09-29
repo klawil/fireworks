@@ -19,18 +19,8 @@ class ContactPolicy
    */
   public function view(User $user, Contact $contact)
   {
-    //
-  }
-
-  /**
-   * Determine whether the user can create contacts.
-   *
-   * @param  \App\User  $user
-   * @return mixed
-   */
-  public function create(User $user)
-  {
-    //
+    // Authorize the user for the show
+    return $user->can('view', $contact->show);
   }
 
   /**
@@ -42,7 +32,8 @@ class ContactPolicy
    */
   public function update(User $user, Contact $contact)
   {
-    //
+    // Authorize the user for the show
+    return $user->can('view', $contact->show);
   }
 
   /**
@@ -54,6 +45,7 @@ class ContactPolicy
    */
   public function delete(User $user, Contact $contact)
   {
-    //
+    // Authorize the user for the show
+    return $user->can('update', $contact->show);
   }
 }
