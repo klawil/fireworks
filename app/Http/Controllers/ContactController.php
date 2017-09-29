@@ -12,9 +12,34 @@ class ContactController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
+  public function index(Show $show)
   {
-    //
+    // Authorize the request
+    $this->authorize('view', $show);
+
+    // Return the view
+    return view('show.contact.index', [
+      'show' => $show,
+      'title' => $show->name ' Contacts',
+      'breadcrumbs' => [
+        [
+          'text' => 'Shows',
+          'url' => route('show.index'),
+        ],
+        [
+          'text' => $show->name,
+          'url' => route('show.show', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => 'Contacts',
+          'url' => route('show.contact.index', [
+            'show' => $show,
+          ]),
+        ],
+      ],
+    ]);
   }
 
   /**
@@ -22,9 +47,40 @@ class ContactController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function create()
+  public function create(Show $show)
   {
-    //
+    // Authorize the request
+    $this->authorize('view', $show);
+
+    // Return the view
+    return view('show.contact.create', [
+      'show' => $show,
+      'title' => "Create {$show->name} Contact",
+      'breadcrumbs' => [
+        [
+          'text' => 'Shows',
+          'url' => route('show.index'),
+        ],
+        [
+          'text' => $show->name,
+          'url' => route('show.show', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => 'Contacts',
+          'url' => route('show.contact.index', [
+            'show' => $show,
+          ]),
+        ],
+        [
+          'text' => 'Create',
+          'url' => route('show.contact.create', [
+            'show' => $show,
+          ]),
+        ],
+      ],
+    ]);
   }
 
   /**
@@ -46,7 +102,39 @@ class ContactController extends Controller
    */
   public function show(Contact $contact)
   {
-    //
+    // Authorize the request
+    $this->authorize('view', $contact);
+
+    // Return the view
+    return view('show.contact.show', [
+      'show' => $contact->show,
+      'contact' => $contact,
+      'title' => "Create {$contact->show->name} Contact",
+      'breadcrumbs' => [
+        [
+          'text' => 'Shows',
+          'url' => route('show.index'),
+        ],
+        [
+          'text' => $contact->show->name,
+          'url' => route('show.show', [
+            'show' => $contact->show,
+          ]),
+        ],
+        [
+          'text' => 'Contacts',
+          'url' => route('show.contact.index', [
+            'show' => $contact->show,
+          ]),
+        ],
+        [
+          'text' => $contact->name,
+          'url' => route('show.contact.show', [
+            'contact' => $contact,
+          ]),
+        ],
+      ],
+    ]);
   }
 
   /**
@@ -57,7 +145,45 @@ class ContactController extends Controller
    */
   public function edit(Contact $contact)
   {
-    //
+    // Authorize the request
+    $this->authorize('update', $contact);
+
+    // Return the view
+    return view('show.contact.edit', [
+      'show' => $contact->show,
+      'contact' => $contact,
+      'title' => "Edit {$contact->show->name} For {$contact->show->name}",
+      'breadcrumbs' => [
+        [
+          'text' => 'Shows',
+          'url' => route('show.index'),
+        ],
+        [
+          'text' => $contact->show->name,
+          'url' => route('show.show', [
+            'show' => $contact->show,
+          ]),
+        ],
+        [
+          'text' => 'Contacts',
+          'url' => route('show.contact.index', [
+            'show' => $contact->show,
+          ]),
+        ],
+        [
+          'text' => $contact->name,
+          'url' => route('show.contact.show', [
+            'contact' => $contact,
+          ]),
+        ],
+        [
+          'text' => 'Edit',
+          'url' => route('show.contact.edit', [
+            'contact' => $contact,
+          ]),
+        ],
+      ],
+    ]);
   }
 
   /**
