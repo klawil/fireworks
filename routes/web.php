@@ -25,6 +25,13 @@ Route::group([
   /**** USER RESOURCE ****/
   Route::resource('user', 'UserController');
 
+  /**** USER LICENSE RESOURCE ****/
+  Route::get('/user/{user}/license/create', 'LicenseController@create')->name('user.license.create');
+  Route::post('/user/{user}/license', 'LicenseController@store')->name('user.license.store');
+  Route::get('/user/{user}/license/{license}/edit', 'LicenseController@edit')->name('user.license.edit');
+  Route::put('/user/{user}/license/{license}', 'LicenseController@update')->name('user.license.update');
+  Route::delete('/user/{user}/license/{license}', 'LicenseController@destroy')->name('user.license.destroy');
+
   /**** SHOW RESOURCE ****/
   Route::resource('show', 'ShowController');
 
