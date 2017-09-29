@@ -58,6 +58,7 @@ Route::group([
   Route::delete('/show/{show}/file/{file}', 'ShowFileController@destroy')->name('show.file.destroy');
 
   /**** SHOW CONTACT RESOURCE ****/
+  Route::get('/show/{show}/contact', 'ContactController@index')->name('show.contact.index');
   Route::get('/show/{show}/contact/create', 'ContactController@create')->name('show.contact.create');
   Route::post('/show/{show}/contact', 'ContactController@store')->name('show.contact.store');
   Route::resource('contact', 'ContactController', [
