@@ -158,7 +158,7 @@ class LicenseController extends Controller
   public function edit(License $license)
   {
     // Authorize the request
-    $this->authorize('edit', $license);
+    $this->authorize('update', $license);
 
     // Return the view
     return view('user.license.edit', [
@@ -204,7 +204,7 @@ class LicenseController extends Controller
   public function update(Request $request, License $license)
   {
     // Authorize the request
-    $this->authorize('edit', $license);
+    $this->authorize('update', $license);
 
     // Validate the request
     $request->validate($this->rules);
@@ -242,7 +242,7 @@ class LicenseController extends Controller
 
     // Return to the license page
     return redirect()
-      ->route('user.license.edit', [
+      ->route('user.license.show', [
         'license' => $license,
       ])
       ->with([
