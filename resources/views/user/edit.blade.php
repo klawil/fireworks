@@ -72,7 +72,7 @@
             <div class="form-group">
               <label for="city" class="col-md-4 control-label"></label>
 
-              <div class="col-md-4{{ $errors->has('city') ? ' has-error' : '' }}">
+              <div class="col-md-3{{ $errors->has('city') ? ' has-error' : '' }}">
                 <input id="city" type="string" class="form-control" name="city" placeholder="City" value="{{ old('city', $user->city) }}">
 
                 @if ($errors->has('city'))
@@ -82,8 +82,11 @@
                 @endif
               </div>
 
-              <div class="col-md-2{{ $errors->has('state') ? ' has-error' : '' }}">
-                <input id="state" type="string" class="form-control" name="state" placeholder="State" value="{{ old('state', $user->state) }}">
+              <div class="col-md-3{{ $errors->has('state') ? ' has-error' : '' }}">
+                @include('assets.state', [
+                  'required' => false,
+                  'default' => $user->state,
+                ])
 
                 @if ($errors->has('state'))
                   <span class="help-block">

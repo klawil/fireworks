@@ -57,7 +57,10 @@
             <label for="state" class="col-md-4 control-label">State*</label>
 
             <div class="col-md-6">
-              <input id="state" name="state" type="text" class="form-control" value="{{ old('state') }}" required>
+              @include('assets.state', [
+                'required' => true,
+                'default' => null,
+              ])
 
               @if($errors->has('state'))
                 <span class="help-block">
