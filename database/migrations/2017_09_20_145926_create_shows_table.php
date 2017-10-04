@@ -14,7 +14,7 @@ class CreateShowsTable extends Migration
     public function up()
     {
         Schema::create('shows', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('id');
             $table->string('name');
             $table->float('price', 20, 4)->nullable();
             $table->date('planned_date')->nullable();
@@ -23,6 +23,7 @@ class CreateShowsTable extends Migration
             $table->string('rain_location')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->primary('id');
         });
     }
 

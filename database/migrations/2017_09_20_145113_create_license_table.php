@@ -14,7 +14,7 @@ class CreateLicenseTable extends Migration
     public function up()
     {
         Schema::create('license', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('id');
             $table->integer('user_id');
             $table->string('type');
             $table->integer('file_id');
@@ -24,6 +24,7 @@ class CreateLicenseTable extends Migration
             $table->date('expire_date');
             $table->timestamps();
             $table->softDeletes();
+            $table->primary('id');
         });
     }
 
