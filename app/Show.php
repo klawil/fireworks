@@ -47,8 +47,7 @@ class Show extends Model
       ->belongsToMany('App\User')
       ->using('App\ShowUser')
       ->withPivot('payment', 'is_owner', 'is_shooter', 'is_driver', 'is_assistant')
-      ->orderBy('last_name', 'asc')
-      ->orderBy('first_name', 'asc');
+      ->orderBy('name', 'asc');
   }
 
   /**

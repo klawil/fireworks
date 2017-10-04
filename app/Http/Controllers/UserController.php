@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
   private $rules = [
-    'first_name' => 'required|string|max:255',
-    'last_name' => 'required|string|max:255',
+    'name' => 'required|string|max:255',
     'email' => 'required|string|email|max:255|unique:users',
     'address' => 'nullable|max:255',
     'city' => 'nullable|max:255',
@@ -28,8 +27,7 @@ class UserController extends Controller
     $Users = $request
       ->user()
       ->userCanSee()
-      ->orderBy('last_name', 'ASC')
-      ->orderBy('first_name', 'ASC')
+      ->orderBy('name', 'ASC')
       ->get();
 
     return view('user.index', [
@@ -109,14 +107,14 @@ class UserController extends Controller
     // Return the view
     return view('user.show', [
       'user' => $user,
-      'title' => $user->first_name . ' ' . $user->last_name,
+      'title' => $user->name,
       'breadcrumbs' => [
         [
           'text' => 'Users',
           'url' => route('user.index'),
         ],
         [
-          'text' => $user->first_name . ' ' . $user->last_name,
+          'text' => $user->name,
           'url' => route('user.show', [
             'user' => $user,
           ]),
@@ -139,14 +137,14 @@ class UserController extends Controller
     // Return the view
     return view('user.edit', [
       'user' => $user,
-      'title' => 'Edit ' . $user->first_name . ' ' . $user->last_name,
+      'title' => 'Edit ' . $user->name,
       'breadcrumbs' => [
         [
           'text' => 'Users',
           'url' => route('user.index'),
         ],
         [
-          'text' => $user->first_name . ' ' . $user->last_name,
+          'text' => $user->name,
           'url' => route('user.show', [
             'user' => $user,
           ]),
@@ -181,8 +179,7 @@ class UserController extends Controller
 
     // Update the user
     $user->email = $request->input('email');
-    $user->first_name = $request->input('first_name');
-    $user->last_name = $request->input('last_name');
+    $user->name = $request->input('name');
     $user->address = $request->input('address', null);
     $user->city = $request->input('city', null);
     $user->state = $request->input('state', null);
@@ -215,7 +212,7 @@ class UserController extends Controller
     // Return the home screen with a message
     return redirect('home')
       ->with([
-        'message' => $user->first_name . ' ' . $user->last_name . ' Deleted',
+        'message' => $user->name . ' Deleted',
       ]);
   }
 }

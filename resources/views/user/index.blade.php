@@ -23,7 +23,7 @@
               <tbody>
                 @foreach($users as $user)
                   <tr>
-                    <td>{{ $user->last_name }}, {{ $user->first_name }}</td>
+                    <td>{{ $user->name }}</td>
                     <td>{{ $user->city && $user->state ? $user->city . ', ' . $user->state : 'N/A' }}</td>
                     <td><a href="{{ route('user.show', ['user' => $user]) }}" class="btn btn-info btn-block">View</a></td>
                   </tr>

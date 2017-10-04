@@ -42,16 +42,14 @@ class HomeController extends Controller
     $ViewableUsers = $Request
       ->user()
       ->userCanSee()
-      ->orderBy('last_name', 'asc')
-      ->orderBy('first_name', 'asc')
+      ->orderBy('name', 'asc')
       ->limit(20)
       ->get();
 
     $ViewingUsers = $Request
       ->user()
       ->canSeeUser()
-      ->orderBy('last_name', 'asc')
-      ->orderBy('first_name', 'asc')
+      ->orderBy('name', 'asc')
       ->limit(20)
       ->get();
 

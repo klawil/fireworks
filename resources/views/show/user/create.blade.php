@@ -20,7 +20,7 @@
                   <option{{ old('user_id', null) === null ? ' selected' : '' }} disabled>Select a User</option>
                   @foreach($users as $user)
                     @if($user->shows_count === 0)
-                      <option{{ old('user_id', null) === $user->id ? ' selected' : '' }} value="{{ $user->id }}">{{ $user->last_name }}, {{ $user->first_name }}</option>
+                      <option{{ old('user_id', null) === $user->id ? ' selected' : '' }} value="{{ $user->id }}">{{ $user->name }}</option>
                     @endif
                   @endforeach
                 </select>

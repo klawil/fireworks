@@ -80,7 +80,7 @@
             <tbody>
               @foreach($show->users as $user)
               <tr>
-                <td>{{ $user->last_name }}, {{ $user->first_name }}</td>
+                <td>{{ $user->name }}</td>
                 <td>{{ $user->pivot->getRoles() }}</td>
                 @if($relationship->is_owner)
                 <td>{{ $user->pivot->payment ? '$' . number_format($user->pivot->payment, 2) : 'N/A' }}</td>
@@ -119,7 +119,7 @@
                 @can('view', $file)
                 <tr>
                   <td>{{ $file->pivot->relationship }}</td>
-                  <td>{{ $file->user()->first()->last_name }}, {{ $file->user()->first()->first_name }}</td>
+                  <td>{{ $file->user()->first()->name }}</td>
                   <td>{{ $file->created_at->diffForHumans() }}</td>
                   <td><a href="{{ route('file.show', ['file' => $file]) }}" class="btn btn-info btn-block">View</a>
                 </tr>

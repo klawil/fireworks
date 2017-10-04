@@ -21,7 +21,7 @@
           <tbody>
             @foreach($show->users as $user)
               <tr>
-                <td>{{ $user->last_name }}, {{ $user->first_name }}</td>
+                <td>{{ $user->name }}</td>
                 <td>{{ $user->pivot->getRoles() }}</td>
                 <td>{{ $user->pivot->payment ? '$' . number_format($user->pivot->payment, 2) : 'N/A' }}</td>
                 <td><a href="{{ route('show.user.edit', ['show' => $show, 'user' => $user]) }}" class="btn btn-info btn-block">Edit Roles</a></td>
