@@ -23,20 +23,20 @@
           @include('assets.input', [
             'label' => 'Contact Description',
             'name' => 'description',
-            'default' => $contact->name,
+            'default' => $contact->description,
           ])
 
           @include('assets.input', [
             'label' => 'Phone Number',
             'name' => 'phone',
-            'default' => $contact->name,
+            'default' => $contact->phone,
             'type' => 'tel',
           ])
 
           @include('assets.input', [
             'label' => 'Email',
             'name' => 'email',
-            'default' => $contact->name,
+            'default' => $contact->email,
             'type' => 'email',
           ])
 
