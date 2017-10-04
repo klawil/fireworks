@@ -83,8 +83,7 @@ class ShowUserController extends Controller
               ->where('shows.id', $show->id);
           }
         ])
-        ->orderBy('last_name', 'ASC')
-        ->orderBy('first_name', 'ASC')
+        ->orderBy('name', 'ASC')
         ->get(),
       'title' => 'Add User to ' . $show->name,
       'breadcrumbs' => [
@@ -167,7 +166,7 @@ class ShowUserController extends Controller
         'show' => $show,
       ])
       ->with([
-        'message' => $user->first_name . ' ' . $user->last_name . ' was added',
+        'message' => $user->name . ' was added',
       ]);
   }
 
@@ -205,7 +204,7 @@ class ShowUserController extends Controller
     return view('show.user.edit', [
       'show' => $show,
       'user' => $userWithPivot,
-      'title' => 'Edit ' . $user->first_name . ' ' . $user->last_name . ' on ' . $show->name,
+      'title' => 'Edit ' . $user->name . ' on ' . $show->name,
       'breadcrumbs' => [
         [
           'url' => route('show.index'),
@@ -224,7 +223,7 @@ class ShowUserController extends Controller
           ]),
         ],
         [
-          'text' => $user->first_name . ' ' . $user->last_name,
+          'text' => $user->name,
           'url' => route('user.show', [
             'user' => $user,
           ]),
@@ -276,7 +275,7 @@ class ShowUserController extends Controller
         'show' => $show,
       ])
       ->with([
-        'message' => $user->first_name . ' ' . $user->last_name . ' Updated',
+        'message' => $user->name . ' Updated',
       ]);
   }
 
@@ -305,7 +304,7 @@ class ShowUserController extends Controller
         'show' => $show,
       ])
       ->with([
-        'message' => $user->first_name . ' ' . $user->last_name . ' Removed',
+        'message' => $user->name . ' Removed',
       ]);
   }
 }

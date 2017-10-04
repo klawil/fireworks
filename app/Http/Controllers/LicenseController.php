@@ -35,14 +35,14 @@ class LicenseController extends Controller
     // Return the view
     return view('user.license.create', [
       'user' => $user,
-      'title' => 'Add License for ' . $user->first_name . ' ' . $user->last_name,
+      'title' => 'Add License for ' . $user->name,
       'breadcrumbs' => [
         [
           'text' => 'Users',
           'url' => route('user.index'),
         ],
         [
-          'text' => $user->first_name . ' ' . $user->last_name,
+          'text' => $user->name,
           'url' => route('user.show', [
             'user' => $user,
           ]),
@@ -127,14 +127,14 @@ class LicenseController extends Controller
     return view('user.license.show', [
       'user' => $license->user,
       'license' => $license,
-      'title' => $license->user->first_name . ' ' . $license->user->last_name . ' ' . $license->type . ' License',
+      'title' => $license->user->name . ' ' . $license->type . ' License',
       'breadcrumbs' => [
         [
           'text' => 'Users',
           'url' => route('user.index'),
         ],
         [
-          'text' => $license->user->first_name . ' ' . $license->user->last_name,
+          'text' => $license->user->name,
           'url' => route('user.show', [
             'user' => $license->user,
           ]),
@@ -164,14 +164,14 @@ class LicenseController extends Controller
     return view('user.license.edit', [
       'user' => $license->user,
       'license' => $license,
-      'title' => $license->user->first_name . ' ' . $license->user->last_name . ' ' . $license->type . ' License',
+      'title' => $license->user->name . ' ' . $license->type . ' License',
       'breadcrumbs' => [
         [
           'text' => 'Users',
           'url' => route('user.index'),
         ],
         [
-          'text' => $license->user->first_name . ' ' . $license->user->last_name,
+          'text' => $license->user->name,
           'url' => route('user.show', [
             'user' => $license->user,
           ]),
