@@ -106,7 +106,7 @@
               <tbody>
                 @foreach($viewable as $user)
                 <tr>
-                  <td>{{ $user->last_name }}, {{ $user->first_name }}</td>
+                  <td>{{ $user->name }}</td>
                   <td>
                     <a class="btn btn-info pull-right" href="{{ route('user.show', ['user' => $user]) }}">View</a>
                   </td>

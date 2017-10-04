@@ -4,7 +4,7 @@
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading text-center">
-        <h4>Edit {{ $license->type }} License for {{ $user->first_name }} {{ $user->last_name }}</h4>
+        <h4>Edit {{ $license->type }} License for {{ $user->name }}</h4>
       </div>
 
       <div class="panel-body">

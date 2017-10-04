@@ -26,7 +26,7 @@
             @foreach($show->files as $file)
               <tr>
                 <td>{{ $file->pivot->relationship }}</td>
-                <td>{{ $file->user()->first()->last_name }}, {{ $file->user()->first()->first_name }}</td>
+                <td>{{ $file->user()->first()->name }}</td>
                 <td>{{ $file->created_at->diffForHumans() }}</td>
                 <td>{{ $file->pivot->getRoles() }}</td>
                 <td>

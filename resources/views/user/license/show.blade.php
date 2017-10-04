@@ -5,7 +5,7 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading text-center">
-          <h4>{{ $user->first_name }} {{ $user->last_name }} {{ $license->type }} License</h4>
+          <h4>{{ $user->name }} {{ $license->type }} License</h4>
         </div>
 
         <div class="panel-body">

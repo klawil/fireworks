@@ -4,7 +4,7 @@
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading text-center">
-        <h2>Create a License for {{ $user->first_name }} {{ $user->last_name }}</h2>
+        <h2>Create a License for {{ $user->name }}</h2>
       </div>
 
       <div class="panel-body">
