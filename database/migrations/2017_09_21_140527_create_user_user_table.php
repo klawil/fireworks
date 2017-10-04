@@ -15,8 +15,8 @@ class CreateUserUserTable extends Migration
     {
         Schema::create('user_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('viewer_id');
+            $table->string('user_id');
+            $table->string('viewer_id');
             $table->boolean('can_edit')->default(False);
             $table->timestamps();
             $table->softDeletes();

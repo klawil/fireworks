@@ -14,13 +14,14 @@ class CreateFileTable extends Migration
     public function up()
     {
         Schema::create('files', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
+            $table->string('id');
+            $table->string('user_id');
             $table->string('file_name');
             $table->string('storage_name');
             $table->string('mimetype');
             $table->timestamps();
             $table->softDeletes();
+            $table->primary('id');
         });
     }
 

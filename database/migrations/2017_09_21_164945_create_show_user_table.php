@@ -15,8 +15,8 @@ class CreateShowUserTable extends Migration
     {
         Schema::create('show_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('show_id');
+            $table->string('user_id');
+            $table->string('show_id');
             $table->float('payment', 10, 2)->nullable();
             $table->boolean('is_owner')->default(False);
             $table->boolean('is_shooter')->default(False);

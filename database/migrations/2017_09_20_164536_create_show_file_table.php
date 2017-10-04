@@ -15,8 +15,8 @@ class CreateShowFileTable extends Migration
     {
         Schema::create('show_file', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('show_id');
-            $table->integer('file_id');
+            $table->string('show_id');
+            $table->string('file_id');
             $table->string('relationship')->nullable();
             $table->boolean('shooter_viewable')->default(False);
             $table->boolean('driver_viewable')->default(False);
