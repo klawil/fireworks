@@ -12,7 +12,7 @@ class UserController extends Controller
     'email' => 'required|string|email|max:255|unique:users',
     'address' => 'nullable|max:255',
     'city' => 'nullable|max:255',
-    'state' => 'nullable|max:3',
+    'state' => 'nullable|max:50',
     'phone' => 'nullable|max:11',
   ];
 

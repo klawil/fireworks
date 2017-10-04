@@ -53,7 +53,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'address' => 'nullable|max:255',
             'city' => 'nullable|max:255',
-            'state' => 'nullable|max:3',
+            'state' => 'nullable|max:50',
             'phone' => 'nullable|max:11',
         ]);
     }
